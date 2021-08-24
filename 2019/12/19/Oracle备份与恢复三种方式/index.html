@@ -13,7 +13,7 @@
 
 
 
-<title>Hello World | 勤练带来力量</title>
+<title>Oracle备份与恢复三种方式 | 勤练带来力量</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">Oracle备份与恢复三种方式</h1>
             
                 <div class="post-meta">
                     
@@ -202,14 +202,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">2020-08-21&nbsp;&nbsp;19:00:30</a>
+                        Date: <a href="#">2019-12-19&nbsp;&nbsp;19:10:57</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E6%B5%8B%E8%AF%95/">测试</a>
+                                <a href="/categories/Oracle/">Oracle</a>
                             
                         </span>
                     
@@ -218,19 +218,77 @@
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+            <p>工作中最常用的当属<a href="asdasd">数据泵</a>，以下内容在生产环境使用较多。</p>
+<h3 id="导入-导出"><a href="#导入-导出" class="headerlink" title="导入/导出"></a><strong>导入/导出</strong></h3><h3 id="Oracle支持三种方式类型导出"><a href="#Oracle支持三种方式类型导出" class="headerlink" title="Oracle支持三种方式类型导出"></a>Oracle支持三种方式类型导出</h3><ul>
+<li>表方式（T方式），将指定表的数据导出。</li>
+<li>用户方式（U方式），将指定用户的所有对象及数据导出。</li>
+<li>全库方式（Full方式），将数据库中的所有对象导出。</li>
+</ul>
+<h3 id="增量导出包括三种类型"><a href="#增量导出包括三种类型" class="headerlink" title="增量导出包括三种类型"></a>增量导出包括三种类型</h3><ul>
+<li>“完全”增量导出（Complete）， 即备份三个数据库，比如：exp system/manager inctype=complete file=040731.dmp</li>
+<li>“增量型”增量导出，备份上一次备份后改变的数据，比如：exp system/manager inctype=incremental file=040731.dmp</li>
+<li>“累积型”增量导出，累计型导出方式是导出自上次“完全”导出之后数据库中变化了的信息，比如：exp system/manager inctype=cumulative file=040731.dmp</li>
+</ul>
+<h3 id="冷备"><a href="#冷备" class="headerlink" title="冷备"></a><strong>冷备</strong></h3><p>冷备份发生在数据库已经正常关闭的情况下，当正常关闭时会提供给我们一个完整的数据库。冷备份时将关键性文件拷贝到另外的位置的一种说法。对于备份Oracle信息而言，冷备份时最快和最安全的方法。</p>
+<h4 id="冷备份优点"><a href="#冷备份优点" class="headerlink" title="冷备份优点"></a>冷备份优点</h4><ul>
+<li>是非常快速的备份方法（只需拷文件）</li>
+<li>容易归档（简单拷贝即可）</li>
+<li>容易恢复到某个时间点上（只需将文件再拷贝回去）</li>
+<li>能与归档方法相结合，做数据库“最佳状态”的恢复。</li>
+<li>低度维护，高度安全。</li>
+</ul>
+<h4 id="冷备份不足"><a href="#冷备份不足" class="headerlink" title="冷备份不足"></a>冷备份不足</h4><ul>
+<li>单独使用时，只能提供到“某一时间点上”的恢复。</li>
+<li>再实施备份的全过程中，数据库必须要作备份而不能作其他工作。也就是说，在冷备份过程中，数据库必须是关闭状态。</li>
+<li>若磁盘空间有限，只能拷贝到磁带等其他外部存储设备上，速度会很慢。</li>
+<li>不能按表或按用户恢复。</li>
+</ul>
+<p>如果可能的话（主要看效率），应将信息备份到磁盘上，然后启动数据库（使用户可以工作）并将备份的信息拷贝到磁带上，拷贝的同时，数据库也可以工作。冷</p>
+<h4 id="备份必须拷贝的文件"><a href="#备份必须拷贝的文件" class="headerlink" title="备份必须拷贝的文件"></a>备份必须拷贝的文件</h4><ul>
+<li>所有数据文件</li>
+<li>所有控制文件</li>
+<li>所有联机REDO LOG文件</li>
+<li>Init.ora文件（可选）</li>
+</ul>
+<p>值得注意的使冷备份必须在数据库关闭的情况下进行，当数据库处于打开状态时，执行数据库文件系统备份是无效的。<br>下面是冷备份操作顺序</p>
+<ul>
+<li><p>关闭数据库</p>
+<p>sqlplus /nolog sql&gt;connect /as sysdba </p>
+<p>sql&gt;shutdown normal;</p>
+</li>
+<li><p>用拷贝命令备份全部的时间文件、重做日志文件、控制文件、初始化参数文件 {$PageTitle=sql&gt;;cp ; ;}</p>
+</li>
+<li><p>重启Oracle数据库 </p>
+<p>sql&gt;startup</p>
+</li>
+</ul>
+<h3 id="热备"><a href="#热备" class="headerlink" title="热备"></a><strong>热备</strong></h3><p>热备份是在数据库运行的情况下，采用archivelog mode方式备份数据库的方法。所以，如果你有昨天夜里的一个冷备份而且又有今天的热备份文件，在发生问题时，就可以利用这些资料恢复更多的信息。热备份要求数据库在Archivelog方式下操作，并需要大量的档案空间。一旦数据库运行在archivelog状态下，就可以做备份了。</p>
+<h4 id="热备份的命令文件三部分组成"><a href="#热备份的命令文件三部分组成" class="headerlink" title="热备份的命令文件三部分组成"></a>热备份的命令文件三部分组成</h4><p>数据文件一个表空间一个表空间的备份。</p>
+<ul>
+<li>设置表空间为备份状态</li>
+<li>备份表空间的数据文件</li>
+<li>回复表空间为正常状态</li>
+</ul>
+<p>备份归档log文件</p>
+<ul>
+<li>临时停止归档进程</li>
+<li>log下那些在archive rede log目标目录中的文件</li>
+<li>重新启动archive进程</li>
+<li>备份归档的redo log文件</li>
+</ul>
+<p>用alter database bachup controlfile命令来备份控制文件</p>
+<h4 id="热备份的优点"><a href="#热备份的优点" class="headerlink" title="热备份的优点"></a>热备份的优点</h4><ul>
+<li>可在表空间或数据库文件级备份，备份的时间短。</li>
+<li>备份时数据库仍可使用。</li>
+<li>可达到秒级恢复（恢复到某一时间点上）。</li>
+<li>可对几乎所有数据库实体做恢复</li>
+<li>恢复是快速的，在大多数情况下爱数据库仍工作时恢复。</li>
+</ul>
+<h4 id="热备份的不足"><a href="#热备份的不足" class="headerlink" title="热备份的不足"></a>热备份的不足</h4><ul>
+<li>不能出错，否则后果严重</li>
+<li>若热备份不成功，所得结果不可用于时间点的恢复</li>
+<li>因难于维护，所以要特别仔细小心，不允许“以失败告终”。</li>
+</ul>
 
         </div>
 
@@ -249,7 +307,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E5%85%B6%E4%BB%96/"># 其他</a>
+                        <a href="/tags/Oracle/"># Oracle</a>
                     
                         
                 </span>
@@ -262,10 +320,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/08/22/%E5%B8%B8%E7%94%A8%E5%9C%B0%E5%9D%80/">常 用 地 址</a>
+                <a class="prev" rel="prev" href="/2020/08/21/hello-world/">Hello World</a>
             
             
-            <a class="next" rel="next" href="/2019/12/19/Oracle%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/">Oracle备份与恢复三种方式</a>
+            <a class="next" rel="next" href="/2019/10/16/Python%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5Insert%E8%AF%AD%E5%8F%A5/">Python批量导入Insert语句</a>
             
         </section>
 

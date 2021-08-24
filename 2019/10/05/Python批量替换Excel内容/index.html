@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="杨佳男">
+
+
+
+
+
+<title>Python批量替换Excel内容 | 勤练带来力量</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YangJianan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YangJianan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Python批量替换Excel内容</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">杨佳男</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2019-10-05&nbsp;&nbsp;20:34:08</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Python/">Python</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>EXCEL中需要批量替换某列某个字符串的操作可以使用Python进行处理，这样比通过EXCEL批量替换节省一些时间，比如：把12个不同的代码值换成中文值。</p>
+<p>安装<a href="sss">Python</a>完成后，下面的代码复制到.py文件中，安装必要的包（xlrd、xlutils）就可以使用了。</p>
+<p>需要注意的是，脚本需要处理的所有文件需和脚本文件必须在同路径下。</p>
+<p>脚本只能处理xls扩展名的文件，xlsx的可以批量替换需要处理的文件扩展名再进行处理，<a href="213">批量替换文件扩展名命令</a>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> xlutils.copy <span class="keyword">import</span> copy</span><br><span class="line"><span class="keyword">import</span> xlrd</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;要替换的文件需与脚本同一目录&quot;</span>)</span><br><span class="line">a = <span class="built_in">input</span>(<span class="string">&quot;输入替换前的内容 \n&quot;</span>)</span><br><span class="line">b = <span class="built_in">input</span>(<span class="string">&quot;输入替换后的内容 \n&quot;</span>)</span><br><span class="line">c = <span class="built_in">input</span>(<span class="string">&quot;输入替换是第几列 \n&quot;</span>)</span><br><span class="line">c = <span class="built_in">int</span>(c) - <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#当前路径 print(sys.path[0])</span></span><br><span class="line"><span class="keyword">for</span> files <span class="keyword">in</span> os.walk(sys.path[<span class="number">0</span>]):</span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files[<span class="number">2</span>]:</span><br><span class="line"><span class="comment">#print(file[-3:])</span></span><br><span class="line"><span class="keyword">if</span>(file[-<span class="number">3</span>:] == <span class="string">&#x27;xls&#x27;</span>):</span><br><span class="line"><span class="comment">#1、打一要修改的excel</span></span><br><span class="line"><span class="comment">#2、再打开另一个excel</span></span><br><span class="line"><span class="comment">#3、把第一个excel里面修改东西写到第二个里头</span></span><br><span class="line"><span class="comment">#4、把原来的excel删掉，新的excel名改成原来的名字</span></span><br><span class="line">book = xlrd.open_workbook(file)</span><br><span class="line">table1 = book.sheets()[<span class="number">0</span>]</span><br><span class="line">nr = table1.nrows</span><br><span class="line">nc = table1.ncols</span><br><span class="line">num = <span class="number">0</span></span><br><span class="line"><span class="comment">#复制一个excel</span></span><br><span class="line">new_book = copy(book)</span><br><span class="line"><span class="comment">#通过获取到新的excel里面的sheet页</span></span><br><span class="line">sheet = new_book.get_sheet(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,nr):</span><br><span class="line"><span class="comment">#print(str(table1.cell(i,c).value))</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">str</span>(table1.cell(i,c).value) == a):</span><br><span class="line"><span class="comment">#写入excel，第一个值是行，第二个值是列</span></span><br><span class="line">sheet.write(i, c, b)</span><br><span class="line">num = num + <span class="number">1</span></span><br><span class="line"><span class="comment">#保存新的excel，保存excel必须使用后缀名是.xls的，不是能是.xlsx的</span></span><br><span class="line">new_book.save(<span class="string">&#x27;2.xls&#x27;</span>)</span><br><span class="line"><span class="comment">#删除原有</span></span><br><span class="line">os.remove(file)</span><br><span class="line"><span class="comment">#将新文件重命名原有文件</span></span><br><span class="line">os.rename(<span class="string">&#x27;2.xls&#x27;</span>,file)</span><br><span class="line"><span class="built_in">print</span>(file + <span class="string">&quot; 替换完成 共替换&quot;</span>+ <span class="built_in">str</span>(num) + <span class="string">&quot;条&quot;</span>)</span><br><span class="line"></span><br><span class="line">ex = <span class="built_in">input</span>(<span class="string">&quot;是否退出,Y or N ? \n&quot;</span>)</span><br><span class="line"><span class="keyword">if</span>(ex == <span class="string">&#x27;Y&#x27;</span>):</span><br><span class="line">exit()</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Python/"># Python</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/10/08/Python%E7%94%9F%E6%88%90Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E6%95%B0%E6%8D%AE/">Python生成Oracle数据库表数据</a>
+            
+            
+            <a class="next" rel="next" href="/2019/10/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95%E5%92%8C%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F/">数据库职业发展和一些感悟</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 杨佳男 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

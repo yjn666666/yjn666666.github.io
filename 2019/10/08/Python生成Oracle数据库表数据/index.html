@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="杨佳男">
+
+
+
+
+
+<title>Python生成Oracle数据库表数据 | 勤练带来力量</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YangJianan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YangJianan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Python生成Oracle数据库表数据</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">杨佳男</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2019-10-08&nbsp;&nbsp;20:35:36</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Python/">Python</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>在日常开发测试中，可能需要测试SQL执行性能，但是在开发环境中往往不存在测试所需的数据，手动添加数据过于繁琐。</p>
+<p>所以自己根据数据字典编写了一个通用Python脚本，用来生成某个表的数据。</p>
+<p>下面的代码复制到.py文件后执行该文件，注意替换代码中数据库登录参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cx_Oracle</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">id_generator</span>(<span class="params">size=<span class="number">6</span>, chars=string.ascii_uppercase + string.digits</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(random.choice(chars) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(size))</span><br><span class="line">db=cx_Oracle.connect(<span class="string">&#x27;用户名/密码@服务名&#x27;</span>)</span><br><span class="line">dbcursor = db.cursor()</span><br><span class="line">sql1 = <span class="string">&#x27;insert into &#x27;</span></span><br><span class="line">sql2 = <span class="string">&#x27; values( &#x27;</span></span><br><span class="line">bl = <span class="literal">True</span></span><br><span class="line"><span class="keyword">while</span>(bl==<span class="literal">True</span>):</span><br><span class="line">    treemenuname =  <span class="built_in">input</span>(<span class="string">&#x27;请输表名,0 退出\n&#x27;</span>)</span><br><span class="line">    sql1 =  sql1 + treemenuname + <span class="string">&#x27;(&#x27;</span> num = <span class="built_in">input</span>(<span class="string">&#x27;请输生成条数,0 退出\n&#x27;</span>)</span><br><span class="line">    dbcursor.execute(<span class="string">&quot;select col.column_name  from user_constraints con, user_cons_columns col where con.constraint_name = col.constraint_name   and con.constraint_type = &#x27;P&#x27;   and col.table_name = &#x27;%s&#x27;  and rownum&lt;=1&quot;</span>%treemenuname)</span><br><span class="line">    zj1 = dbcursor.fetchone()</span><br><span class="line">    zj  = zj1[<span class="number">0</span>] </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;主键关键字:&quot;</span>,zj)</span><br><span class="line">    <span class="keyword">if</span>(treemenuname == <span class="string">&#x27;0&#x27;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    dbcursor.execute(<span class="string">&quot;select COLUMN_NAME,DATA_TYPE,DATA_LENGTH from user_tab_columns where TABLE_NAME = &#x27;%s&#x27; &quot;</span>%treemenuname)</span><br><span class="line">    rs = dbcursor.fetchall()</span><br><span class="line">    <span class="keyword">if</span>(rs):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(rs)):</span><br><span class="line">            yz = rs[i]</span><br><span class="line">            col = yz[<span class="number">0</span>]</span><br><span class="line">            typ = yz[<span class="number">1</span>]</span><br><span class="line">            lgh = yz[<span class="number">2</span>]</span><br><span class="line">            sql1 = sql1 + col</span><br><span class="line">            <span class="keyword">if</span>(zj != col):</span><br><span class="line">                <span class="keyword">if</span>(typ == <span class="string">&#x27;VARCHAR2&#x27;</span>):</span><br><span class="line">                    sql2= sql2 + <span class="string">&quot;&#x27;&quot;</span> +id_generator(lgh)+<span class="string">&quot;&#x27;&quot;</span></span><br><span class="line">                <span class="keyword">elif</span>(typ == <span class="string">&#x27;NUMBER&#x27;</span>):</span><br><span class="line">                    sql2= sql2 + <span class="string">&quot;%s&quot;</span>%i</span><br><span class="line">                <span class="keyword">elif</span>(typ == <span class="string">&#x27;DATE&#x27;</span>):</span><br><span class="line">                    sql2 = sql2 + <span class="string">&quot;sysdate&quot;</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                sql2  = sql2 + <span class="string">&quot;&#x27;主键&#x27;&quot;</span></span><br><span class="line">                zjlgh = lgh</span><br><span class="line">            <span class="comment">#</span></span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">len</span>(rs) != i + <span class="number">1</span>):</span><br><span class="line">                sql1 = sql1 + <span class="string">&#x27;,&#x27;</span></span><br><span class="line">                sql2 = sql2 +  <span class="string">&#x27;,&#x27;</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                sql1 = sql1 + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">                sql2 = sql2 +  <span class="string">&#x27;)&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;无查询结果&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">int</span>(num)):</span><br><span class="line">        <span class="keyword">if</span>(zj <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>):</span><br><span class="line">            <span class="comment">#print(sql2)</span></span><br><span class="line">            dbcursor.execute(sql1 + sql2.replace(<span class="string">&#x27;主键&#x27;</span>,id_generator(zjlgh)))</span><br><span class="line">            db.commit()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;查询完成&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Python/"># Python</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/10/09/%E5%85%B3%E4%BA%8EOCP%E8%80%83%E8%AF%95/">关于OCP考试</a>
+            
+            
+            <a class="next" rel="next" href="/2019/10/05/Python%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2Excel%E5%86%85%E5%AE%B9/">Python批量替换Excel内容</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 杨佳男 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
