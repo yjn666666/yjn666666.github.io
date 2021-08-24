@@ -13,7 +13,7 @@
 
 
 
-<title>关于OCP考试 | 勤练带来力量</title>
+<title>Oracle数据库 | 勤练带来力量</title>
 
 
 
@@ -127,11 +127,73 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">关于OCP考试</h1>
+            <h1 class="post-title">Oracle数据库</h1>
             
                 <div class="post-meta">
                     
@@ -140,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">2019-10-09&nbsp;&nbsp;19:27:07</a>
+                        Date: <a href="#">2020-12-22&nbsp;&nbsp;19:49:30</a>
                         </span>
                     
                     
@@ -156,17 +218,55 @@
         </header>
 
         <div class="post-content">
-            <p>2019年5月考完了最后一科，通过培训学校报的考，因为考试必须有指定的合作机构培训或者原厂培训为前提，实际考试的时候还是要靠自己的学习和积累。</p>
-<p>OCP 11g 考试分三门</p>
-<ul>
-<li>071考试，一共66道题，考试时间120分钟，通过要求63%，考察SQL基础。</li>
-<li>052考试，一共70道题，考试时间90分钟，通过要求66%，考察Oracle自身策略和进程。</li>
-<li>053考试，一共78道题，考试时间120分钟，通过要求66%，考察备份恢复等DBA应有技能。</li>
+            <h3 id="Oracle数据库"><a href="#Oracle数据库" class="headerlink" title="Oracle数据库"></a>Oracle数据库</h3><h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><h5 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h5><ul>
+<li><p>程序全局区（PGA）</p>
+<blockquote>
+<p>每个服务进程私有的内存区域</p>
+</blockquote>
+</li>
+<li><p>调用全局区（CGA）</p>
+<blockquote>
+<p>CGA存放的只是调用过程中的临时处理数据</p>
+</blockquote>
+</li>
+<li><p>用户全局区（UGA）</p>
+<blockquote>
+<p>特定会话的信息</p>
+</blockquote>
+</li>
+<li><p>系统全局区（SGA）</p>
+<blockquote>
+<p>包含实例的数据和控制信息</p>
+</blockquote>
+</li>
 </ul>
-<p>网上有很多题库，但题库中的题非常多，不建议死记硬背，因为太多了，根本背不下来，有很多题是一样的问题，但答案却不同，所以题库中的答案不一定是对的，我们可以把题库当成真题来做，检验自己的水平。</p>
-<p>考试可以自己在考试网站预约的考点和时间进行，考试时一人一台电脑，会给手写板，除了衣服其他都不能带进去，会有柜子存放。</p>
-<p>不建议一天考多科，准备充分一天一科，要带两份有效证件，身份证和医保卡即可，考试完成后在走出考场五分钟左右就会在你的账号邮箱中收到考试结果，查看自己的百分比就知道是否通过了。</p>
-<p>OCP 11g 在2019年之后就停止了，只能参加12c的考试，证书只有电子版，Oracle不在邮寄纸质证书了。</p>
+<h5 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h5><ul>
+<li><p>后台进程</p>
+<blockquote>
+<p>这些进程随数据库而启动，用于完成各种维护任务，如将块写至磁盘、维护在线重做日志、清理异常中止的进程等。</p>
+</blockquote>
+</li>
+<li><p>服务器进程</p>
+<blockquote>
+<p>这些进程根据客户的请求来完成工作。我们已经对专用服务器和共享服务器有了一定的了解。它们就是服务器进程。</p>
+</blockquote>
+</li>
+<li><p>从属进程</p>
+<blockquote>
+<p>这些进程类似于后台进程，不过它们要代表后台进程或服务器进程完成一些额外的工作。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h4><ul>
+<li>数据文件</li>
+<li>警告文件</li>
+<li>控制文件</li>
+<li>参数文件</li>
+<li>重做文件</li>
+<li>跟踪文件</li>
+<li>密码文件</li>
+<li>临时文件</li>
+</ul>
 
         </div>
 
@@ -198,10 +298,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2019/10/16/Python%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5Insert%E8%AF%AD%E5%8F%A5/">Python批量导入Insert语句</a>
+                <a class="prev" rel="prev" href="/2020/12/22/OraclePLSQL%E7%9F%A5%E8%AF%86/">Oracle PLSQL知识</a>
             
             
-            <a class="next" rel="next" href="/2019/10/08/Python%E7%94%9F%E6%88%90Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E6%95%B0%E6%8D%AE/">Python生成Oracle数据库表数据</a>
+            <a class="next" rel="next" href="/2020/08/22/%E5%B8%B8%E7%94%A8%E5%9C%B0%E5%9D%80/">常 用 地 址</a>
             
         </section>
 
