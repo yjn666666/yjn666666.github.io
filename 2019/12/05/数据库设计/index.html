@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="杨佳男">
+
+
+
+
+
+<title>数据库设计 | 勤练带来力量</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YangJianan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YangJianan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">数据库设计</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">杨佳男</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2019-12-05&nbsp;&nbsp;20:48:47</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>数据库设计的是数据模型，数据模型是数据库结构的基础，用来描述数据的一组概念和定义。数据库设计从数据结构，即数据模型开始，以数据，模型为核心展开，静态设计与动态设计分离，试探性、反复性、多步性来完成。</p>
+<p>对于小公司来说基本没有数据库设计，开发根据业务要求自定义数据项。</p>
+<p>良好的开发规范还应该是由专门的数据库开发人员来完成数据库设计，并且数据库开发人员也应规范数据模型的开发，这样持之以恒的保证模型的规范，对未来系统调整以及升级有强有力里的支撑。</p>
+<h4 id="数据模型三要素"><a href="#数据模型三要素" class="headerlink" title="数据模型三要素"></a>数据模型三要素</h4><ul>
+<li>数据结构</li>
+<li>数据操作</li>
+<li>数据约束</li>
+</ul>
+<h4 id="常用的数据模型"><a href="#常用的数据模型" class="headerlink" title="常用的数据模型"></a>常用的数据模型</h4><ul>
+<li><p>概念数据模型</p>
+</li>
+<li><p>基本数据模型</p>
+</li>
+<li><p>面向对象模型</p>
+</li>
+</ul>
+<h4 id="数据库设计四类方法"><a href="#数据库设计四类方法" class="headerlink" title="数据库设计四类方法"></a>数据库设计四类方法</h4><ul>
+<li>直观设计法</li>
+<li>规范设计法</li>
+<li>计算机辅助设计法</li>
+<li>数据库设计法</li>
+</ul>
+<h4 id="数据库设计基本步骤"><a href="#数据库设计基本步骤" class="headerlink" title="数据库设计基本步骤"></a>数据库设计基本步骤</h4><ul>
+<li><p>需求分析</p>
+<blockquote>
+<p>自顶向下、逐步分解</p>
+</blockquote>
+</li>
+<li><p>概念结构设计</p>
+<blockquote>
+<p>分类、聚集、概括、建立信息模型、实体关系图（局部、全局、全局优化）</p>
+</blockquote>
+</li>
+<li><p>逻辑结构设计</p>
+<blockquote>
+<p>层次、网状、关系模型（普遍使用）</p>
+</blockquote>
+</li>
+<li><p>物理结构设计</p>
+<blockquote>
+<p>存储格式设计、存储结构设计、存取方法设计、确定系统配置</p>
+</blockquote>
+</li>
+<li><p>应用结构设计</p>
+<blockquote>
+<p>开发人员编写代码来完成数据库的操作</p>
+</blockquote>
+</li>
+<li><p>运行维护</p>
+<blockquote>
+<p>转储、恢复、安全、性能监督、改造、重组、重构</p>
+</blockquote>
+</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"># 数据库</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/12/19/Oracle%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/">Oracle备份与恢复三种方式</a>
+            
+            
+            <a class="next" rel="next" href="/2019/12/04/Oracle%E9%99%90%E5%88%B6%E6%9F%A5%E8%AF%A2%E8%BF%94%E5%9B%9E%E6%9D%A1%E6%95%B0/">Oracle限制查询返回条数</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 杨佳男 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

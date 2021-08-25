@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="杨佳男">
+
+
+
+
+
+<title>关于软件设计师考试 | 勤练带来力量</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YangJianan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YangJianan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">关于软件设计师考试</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">杨佳男</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2021-08-25&nbsp;&nbsp;16:40:55</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="报名网站"><a href="#报名网站" class="headerlink" title="报名网站"></a><a target="_blank" rel="noopener" href="https://www.ruankao.org.cn/">报名网站</a></h3><ul>
+<li>找到报名入口</li>
+<li>提交信息</li>
+<li>交钱</li>
+<li>打印准考证，2020年多了疫情承诺书</li>
+<li>考试</li>
+<li>等待结果</li>
+</ul>
+<h3 id="考试时间"><a href="#考试时间" class="headerlink" title="考试时间"></a>考试时间</h3><ul>
+<li>上午 09:00:00（150分钟） 75道单选题，45分及格，满分75</li>
+<li>下午 14:00:00（150分钟） 6道大题，5、6选答，45分及格，满分75</li>
+</ul>
+<h3 id="考试内容"><a href="#考试内容" class="headerlink" title="考试内容"></a>考试内容</h3><ul>
+<li><p>上午综合知识 </p>
+<blockquote>
+<p>大学的内容，数据结构，组成原理，网络工程，操作系统，再加上知识产权和多媒体。　　　　　　　　 　</p>
+</blockquote>
+<blockquote>
+<p>只能说知识面广，死记硬背的多一些，相比较来说计算题是最简单的了。　　　</p>
+</blockquote>
+</li>
+<li><p>下午应用技术</p>
+<blockquote>
+<p>包括但不限于数据流图、UML、ER模型关系模式、算法应用、面向对象编程 问答题、填空题、代码填空题等。　　　　　　　　 </p>
+</blockquote>
+<blockquote>
+<p>下午题型固定，每道小题分值较大，建议常用算法和设计模式系统学习一下，网上有很多很棒的帖子。依照个人能力，如果代码和算法能力强的，基本没有问题，下面总结了08年以来的题型供大家参考。　</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="下午考试题型"><a href="#下午考试题型" class="headerlink" title="下午考试题型"></a>下午考试题型</h3><h4 id="数据流图"><a href="#数据流图" class="headerlink" title="数据流图"></a>数据流图</h4><ul>
+<li>给出实体名称（使用文中词汇，注意“等”）</li>
+<li>给出数据存储名称</li>
+<li>补充数据流及其起点和终点（起点及终点要确认好，每个处理的输入和输出数据流数量和流向都是成对的，三个输出就有三个输出）</li>
+<li>分解子加工、如何保证数据流的平衡、是否新增实体</li>
+</ul>
+<h4 id="E-R图"><a href="#E-R图" class="headerlink" title="E-R图"></a>E-R图</h4><ul>
+<li>补充联系及联系类型（全局补充，不能单一联系答题，联系可自定义但不能重复，注意联系类型的要求）</li>
+<li>补充属性</li>
+<li>给出主键和外键，外键主键可能一样</li>
+<li>关系模式全码判断、增加实体后修改关系图，给出关系模式</li>
+</ul>
+<h4 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h4><ul>
+<li>给出类名（一定是英文答题对象）、参与者名称、对象类型区分（接口类、控制类、实体类）、状态名（分析对象级别及层次来区分）、给出用例及用例间的关系</li>
+<li>给出属性、用例名称（功能）、时间名</li>
+<li>包含哪种涉及模式，实现哪些功能、新需求的调整</li>
+</ul>
+<h4 id="数据结构和算法"><a href="#数据结构和算法" class="headerlink" title="数据结构和算法"></a>数据结构和算法</h4><ul>
+<li>补充代码（循环主体找循环控制变量、代码中算法的使用、数据等变量的赋值和初始化、返回值在赋值中查找）</li>
+<li>代码算法策略及时间复杂度</li>
+<li>最小时间复杂度、最大时间复杂度</li>
+</ul>
+<h4 id="面向对象或设计模式补充代码"><a href="#面向对象或设计模式补充代码" class="headerlink" title="面向对象或设计模式补充代码"></a>面向对象或设计模式补充代码</h4><ul>
+<li>生成器模式（Builder）</li>
+<li>桥接模式</li>
+<li>装饰（Decorator）</li>
+<li>状态模式</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%85%B6%E4%BB%96/"># 其他</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/08/25/%E5%B7%A5%E5%85%B7PLSQLDeveloper%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%85%E8%AF%AD%E5%8F%A5/">工具PLSQLDeveloper自动补充语句</a>
+            
+            
+            <a class="next" rel="next" href="/2021/08/25/Oracle%E7%AD%96%E7%95%A5RMAN%E5%A4%87%E4%BB%BD/">Oracle策略RMAN备份</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 杨佳男 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="杨佳男">
+
+
+
+
+
+<title>OGG介绍 | 勤练带来力量</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YangJianan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YangJianan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">OGG介绍</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">杨佳男</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2019-11-21&nbsp;&nbsp;19:08:10</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/OGG/">OGG</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="Oracle-GoldenGate简介"><a href="#Oracle-GoldenGate简介" class="headerlink" title="Oracle GoldenGate简介"></a>Oracle GoldenGate简介</h3><h4 id="Oracle-GoldenGate"><a href="#Oracle-GoldenGate" class="headerlink" title="Oracle GoldenGate"></a>Oracle GoldenGate</h4><p>Oracle GoldenGate支持在事务级别跨多个异构平台之间交换和操作数据。</p>
+<p>它的模块化体系结构使您能够灵活地提取和复制选定的数据记录、事务更改以及DDL的更改。</p>
+<p>通过这种灵活性，以及Oracle GoldenGate的过滤、转换和自定义处理特性，您可以支持许多业务需求:</p>
+<ul>
+<li>业务连续性和高可用性。</li>
+<li>初始加载和数据库迁移。</li>
+<li>数据集成。</li>
+<li>决策支持和数据仓库。</li>
+</ul>
+<p><em>支持在源和目标不同字符集之间的转换，且目标字符集和客户端必须是源字符集的超集或者等价字符集。</em></p>
+<h4 id="Oracle-GoldenGate组成组件"><a href="#Oracle-GoldenGate组成组件" class="headerlink" title="Oracle GoldenGate组成组件"></a>Oracle GoldenGate组成组件</h4><h5 id="Extract（提取）"><a href="#Extract（提取）" class="headerlink" title="Extract（提取）"></a>Extract（提取）</h5><p>初始化数据：直接从源对象中提取当前数据集。变更同步：inserts, updates, and deletes， DDL changes and sequences。</p>
+<p>提取数据通过数据库恢复日志或者事务日志，具体依靠什么还要看数据库类型，还支持第三方捕获。</p>
+<h5 id="Data-pump（数据泵）"><a href="#Data-pump（数据泵）" class="headerlink" title="Data pump（数据泵）"></a>Data pump（数据泵）</h5><p>第二中提取方式，防止网络和目标故障对作业影响，可分阶段，多个源到一个目标，一个源到多个目标。可进行山筛选 TABLE。</p>
+<h5 id="Replicat（复制）"><a href="#Replicat（复制）" class="headerlink" title="Replicat（复制）"></a>Replicat（复制）</h5><p>分为初始化数据和变更同步，可以将多个复制进程与多个提取进程并行使用，以增加吞吐量。使用本地数据库接口或ODBC.可进行转换 MAP。</p>
+<h5 id="Trails-or-extract-files（跟踪和提取文件）"><a href="#Trails-or-extract-files（跟踪和提取文件）" class="headerlink" title="Trails or extract files（跟踪和提取文件）"></a>Trails or extract files（跟踪和提取文件）</h5><p>将捕捉到的更改临时存储在磁盘上的一系列文件中，跟踪可以存在于源或目标系统上，也可以存在于中介系统上，这取决于您如何配置Oracle GoldenGate。</p>
+<p>跟踪的使用还允许提取和复制活动彼此独立地进行。只有一个提取进程可以写入跟踪。跟踪文件由数据泵和复制进程读取。</p>
+<p>跟踪文件默认10M大小。默认情况下，跟踪文件存储在Oracle GoldenGate的dirdat子目录中。当处理一次运行时，生成提取文件，不生成跟踪文件。</p>
+<h5 id="Checkpoints（检查点）"><a href="#Checkpoints（检查点）" class="headerlink" title="Checkpoints（检查点）"></a>Checkpoints（检查点）</h5><p>检查点将进程的当前读和写位置存储到磁盘，以便进行恢复。</p>
+<p>这些检查点确保标记为同步的数据更改实际上是由Extract提取并且Replicat复制的，它们可以防止冗余处理。</p>
+<p>支持系统、网络、进程重启的。对于复杂的同步配置，检查点允许多个提取或复制进程从同一组轨迹读取数据。</p>
+<p>检查点信息保存在Oracle GoldenGate目录下dirchk子目录下的检查点文件中。<br>CSN提交序列号，用于标识事务，维护一致性和数据完整性。唯一标识事务提交到数据库的时间点。</p>
+<h5 id="Manager（进程控制）"><a href="#Manager（进程控制）" class="headerlink" title="Manager（进程控制）"></a>Manager（进程控制）</h5><p>监视并重启Oracle GoldenGate进程。问题阈值报告，例如当吞吐量降低或同步延迟增加时。维护跟踪文件和日志。</p>
+<p>分配数据存储空间。报告错误和事件。接收和路由来自用户界面的请求。源端和目标端系统或者用到的中间系统都需要运行管理进程。</p>
+<h5 id="Collector（收集器）"><a href="#Collector（收集器）" class="headerlink" title="Collector（收集器）"></a>Collector（收集器）</h5><p>目标系统后台进程。Collector接收经过TCP/IP网络发送的提取的数据库更改，并将它们写入一个跟踪或提取文件。</p>
+<p>通常，当需要网络连接时，Manager会自动启动收集器。当Manager启动Collector时，该进程称为动态收集器，Oracle GoldenGate用户通常不与它交互。</p>
+<p>但是，您可以手动运行Collector。这就是所谓的静态收集器。并非所有Oracle GoldenGate配置都使用收集器进程。<br>进程分组：为了区分多个捕获和复制进程，可以定义进程组，例如对不同数据集并行操作时可以划分组来进行辨别。</p>
+<p>增加组的方式是在GGSCI命令行中ADD EXTRACT和ADD REPLICAT命令。一个进程组包含进程，参数文件，检查点文件等。</p>
+<h6 id="进程状态"><a href="#进程状态" class="headerlink" title="进程状态"></a>进程状态</h6><ul>
+<li><p>STOPPED（正常停止）</p>
+</li>
+<li><p>STARTING （正在启动）</p>
+</li>
+<li><p>RUNNING （正在运行）</p>
+</li>
+<li><p>ABENDED （Abnomal End 的缩写，表示异常结束）</p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/OGG/"># OGG</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/12/04/Oracle%E9%99%90%E5%88%B6%E6%9F%A5%E8%AF%A2%E8%BF%94%E5%9B%9E%E6%9D%A1%E6%95%B0/">Oracle限制查询返回条数</a>
+            
+            
+            <a class="next" rel="next" href="/2019/11/18/Oracle%E5%BC%82%E5%B8%B8%E6%B1%87%E6%80%BB%E6%95%B4%E7%90%86/">Oracle异常汇总整理</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 杨佳男 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

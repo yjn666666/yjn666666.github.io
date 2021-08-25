@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="杨佳男">
+
+
+
+
+
+<title>Oracle字符集转换 | 勤练带来力量</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YangJianan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YangJianan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Oracle字符集转换</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">杨佳男</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2019-11-01&nbsp;&nbsp;20:34:09</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Oracle/">Oracle</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>字符集是按照一定的字符编码方案，对一组特定的符号，分别赋予不同数值编码的集合。</p>
+<p>日常使用时，服务端与客户端字符集需一致。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--服务端</span><br><span class="line">select * from nls_database_parameters;</span><br><span class="line">--客户端</span><br><span class="line">SELECT USERENV(&#x27;LANGUAGE&#x27;) FROM DUAL;</span><br></pre></td></tr></table></figure>
+
+<p>数据库字符集调整最常用的是ALTER命令和完全的导出和导入两种。</p>
+<h4 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h4><p>ALTER DATABASE字符集语句是迁移字符集的最快方法，但只能在特殊情况下使用。ALTER DATABASE字符集语句不执行任何数据转换，因此，当且仅当新字符集是当前字符集的严格超集时，才可以使用它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--ALTER DATABASE字符集语句的语法如下,db_name为可选项:</span><br><span class="line">ALTER DATABASE [db_name] CHARACTER SET new_character_set;</span><br></pre></td></tr></table></figure>
+
+<h4 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h4><p>数据泵（EXPDP/IMPDP）方式代价较高，耗时且占用资源多，并且需要在迁移时对数据进行扫描，确认在迁移时是否会发生数据截断和字符集转换错误。</p>
+<p>数据库字符集迁移有两个阶段:数据扫描和数据转换。</p>
+<p>在更改数据库字符集之前，使用字符集扫描工具确定在更改数据库字符集之前所需的工作量。</p>
+<p>使用数据泵导入导出脚本示例，脚本需在数据库服务器执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">--查看管理员目录 确认导出文件位置路径 </span><br><span class="line">SELECT * FROM dba_directories;</span><br><span class="line">--expdp导出 带有条件</span><br><span class="line">expdp 用户/密码@服务名  directory=DATA_PUMP_DIR dumpfile=数据文件文件名.dmp logfile=日志文件文件名.log tables=导出表名 query=&#x27;&quot; where lsh in (select lsh from table_1 where code !=&#x27;1&#x27; and flag=&#x27;1&#x27;)&quot;&#x27;</span><br><span class="line">CONTENT选项可选导出结构或数据 导出格式默认为.dmp--impdp导入 导入时重命名 存在表则增加数据 主键重复数据忽略 导入时也可以限定导入时所属表空间</span><br><span class="line">impdp 用户/密码@服务名  directory=DATA_PUMP_DIR dumpfile=数据文件文件名.dmp REMAP_TABLE =导出用户名.导出表名:导入表名 TABLE_EXISTS_ACTION=append data_options=skip_constraint_errors</span><br></pre></td></tr></table></figure>
+
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>字符集扫描工具Character Set Scanner</p>
+<p>适用于 Oracle Database 10g 和 Oracle Database 11g 的字符集扫描程序作为数据库软件的一个组件提供。</p>
+<p>Oracle Database 12c 不再支持或捆绑字符集扫描程序。</p>
+<p>Database Migration Assistant for Unicode (DMU) 是替代字符集扫描程序的工具。</p>
+<p>具体字符集扫描工具的介绍和使用请<a target="_blank" rel="noopener" href="https://docs.oracle.com/cd/B19306_01/server.102/b14225/ch12scanner.htm">参考</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Oracle/"># Oracle</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/11/04/Oracle%E5%8A%A8%E6%80%81%E6%80%A7%E8%83%BD%E8%A7%86%E5%9B%BE%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/">Oracle动态性能视图和数据字典</a>
+            
+            
+            <a class="next" rel="next" href="/2019/10/21/Oracle%E7%AD%96%E7%95%A5RMAN%E6%81%A2%E5%A4%8D/">Oracle策略RMAN恢复</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 杨佳男 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

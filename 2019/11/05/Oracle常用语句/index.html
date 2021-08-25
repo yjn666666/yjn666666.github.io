@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="杨佳男">
+
+
+
+
+
+<title>Oracle常用语句 | 勤练带来力量</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YangJianan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YangJianan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Oracle常用语句</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">杨佳男</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2019-11-05&nbsp;&nbsp;20:58:16</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Oracle/">Oracle</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">--查看Oracle数据库版本</span><br><span class="line">SELECT * FROM v$version;</span><br><span class="line"></span><br><span class="line">--查询数据库所有模式用户</span><br><span class="line">SELECT username, profile, default_tablespace, temporary_tablespace FROM dba_users;</span><br><span class="line"></span><br><span class="line">--检查表空间的自动扩展开关</span><br><span class="line">SELECT tablespace_name,SUBSTR (file_name, 1, 50), AUTOEXTENSIBLE FROM dba_data_files;</span><br><span class="line"></span><br><span class="line">--在指定的用户下运行脚本</span><br><span class="line">ALTER SESSION SET CURRENT_SCHEMA = TSSH;</span><br><span class="line"></span><br><span class="line">--检查在当前数据库模式下是否存在指定的表</span><br><span class="line">SELECT table_name FROM user_tables WHERE table_name = &#x27;表名&#x27;;</span><br><span class="line"></span><br><span class="line">--检查在当前表中是否存在指定的列</span><br><span class="line">SELECT * FROM user_tab_cols WHERE table_name = &#x27;TABLE_NAME&#x27; AND column_name = &#x27;COLUMN_NAME&#x27;;</span><br><span class="line"></span><br><span class="line">--显示对象的DDL状态信息，TABLE可替换对象名称VIEWS等</span><br><span class="line">SELECT DBMS_METADATA.get_ddl (&#x27;TABLE&#x27;, &#x27;表名&#x27;, &#x27;模式用户&#x27;) FROM DUAL;</span><br><span class="line"></span><br><span class="line">--在表空间中添加数据文件</span><br><span class="line">ALTER TABLESPACE data01 ADD   &#x27;/work/oradata/STARTST/data01.dbf&#x27; SIZE 1000M AUTOEXTEND OFF;</span><br><span class="line"></span><br><span class="line">--给指定的表空间增加大小</span><br><span class="line">ALTER DATABASE &#x27;/u01/app/Test_data_01.dbf&#x27; RESIZE 2G;</span><br><span class="line"></span><br><span class="line">--给出以GB为单位的数据库的实际大小</span><br><span class="line">SELECT SUM (bytes) / 1024 / 1024 / 1024 AS GB FROM dba_data_files;</span><br><span class="line"></span><br><span class="line">--查询读取耗费前十个SQL</span><br><span class="line">SELECT *</span><br><span class="line">  FROM (SELECT ROWNUM,</span><br><span class="line">               SUBSTR(a.sql_text, 1, 200) sql_text,</span><br><span class="line">               TRUNC(a.disk_reads / DECODE(a.executions, 0, 1, a.executions)) reads_per_execution,</span><br><span class="line">               a.buffer_gets,</span><br><span class="line">               a.disk_reads,</span><br><span class="line">               a.executions,</span><br><span class="line">               a.sorts,</span><br><span class="line">               a.address</span><br><span class="line">          FROM v$sqlarea a</span><br><span class="line">         ORDER BY 3 DESC)</span><br><span class="line"> WHERE ROWNUM &lt; 10;</span><br><span class="line"></span><br><span class="line">--在 Oracle 生成随机数据 </span><br><span class="line">SELECT LEVEL empl_id,</span><br><span class="line">           MOD (ROWNUM, 50000) dept_id,</span><br><span class="line">           TRUNC (DBMS_RANDOM.VALUE (1000, 500000), 2) salary,</span><br><span class="line">           DECODE (ROUND (DBMS_RANDOM.VALUE (1, 2)),  1, &#x27;M&#x27;,  2, &#x27;F&#x27;) gender,</span><br><span class="line">           TO_DATE (</span><br><span class="line">                 ROUND (DBMS_RANDOM.VALUE (1, 28))</span><br><span class="line">              || &#x27;-&#x27;</span><br><span class="line">              || ROUND (DBMS_RANDOM.VALUE (1, 12))</span><br><span class="line">              || &#x27;-&#x27;</span><br><span class="line">              || ROUND (DBMS_RANDOM.VALUE (1900, 2010)),</span><br><span class="line">              &#x27;DD-MM-YYYY&#x27;)</span><br><span class="line">              dob,</span><br><span class="line">           DBMS_RANDOM.STRING (&#x27;x&#x27;, DBMS_RANDOM.VALUE (20, 50)) address</span><br><span class="line">      FROM DUAL</span><br><span class="line">CONNECT BY LEVEL &lt; 10000;--查询用户对表字段权限select * from User_Col_Privs_Made  a where a.GRANTEE = &#x27;用户名&#x27;;--查询用户对表权限select * from User_TAB_Privs_Made  a where a.GRANTEE = &#x27;用户名&#x27;;</span><br><span class="line"></span><br><span class="line">--查询用户下所有表大小</span><br><span class="line">select SEGMENT_NAME, TABLESPACE_NAME, sum(BYTES / 1024 / 1024 /1024) || &#x27;G&#x27;  from USER_extents  where USER_extents.SEGMENT_TYPE = &#x27;TABLE&#x27;  group by USER_extents.SEGMENT_NAME, USER_extents.TABLESPACE_NAME;</span><br><span class="line"></span><br><span class="line">--查询存储过程中使用了那些表</span><br><span class="line">SELECT * FROM user_source WHERE TYPE = &#x27;PROCEDURE&#x27; AND upper(text) LIKE &#x27;%SRPT_YHCDFSE%&#x27;;select * from user_dependencies A where REFERENCED_OWNER = &#x27;SHEAM&#x27; TYPE  = &#x27;PROCEDURE&#x27; ;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Oracle/"># Oracle</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/11/18/Oracle%E5%BC%82%E5%B8%B8%E6%B1%87%E6%80%BB%E6%95%B4%E7%90%86/">Oracle异常汇总整理</a>
+            
+            
+            <a class="next" rel="next" href="/2019/11/04/Oracle%E5%8A%A8%E6%80%81%E6%80%A7%E8%83%BD%E8%A7%86%E5%9B%BE%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/">Oracle动态性能视图和数据字典</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 杨佳男 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

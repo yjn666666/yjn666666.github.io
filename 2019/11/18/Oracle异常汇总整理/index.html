@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="杨佳男">
+
+
+
+
+
+<title>Oracle异常汇总整理 | 勤练带来力量</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YangJianan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YangJianan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Oracle异常汇总整理</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">杨佳男</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2019-11-18&nbsp;&nbsp;18:07:20</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Oracle/">Oracle</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h4 id="ORA-12514"><a href="#ORA-12514" class="headerlink" title="ORA-12514"></a>ORA-12514</h4><blockquote>
+<p>TNS:监听器目前不知道在连接描述符中请求的服务</p>
+</blockquote>
+<p>TNSNAMES.ORA配置文件中缺失配置或配置错误</p>
+<blockquote>
+<p>动态及静态监听</p>
+</blockquote>
+<p>设置数据库归档模式时，提示如下错误。问题原因是因为动态监听在实例关闭时会被注销。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; shutdown immediate</span><br><span class="line">Database closed.</span><br><span class="line">Database dismounted.</span><br><span class="line">ORACLE instance shut down.</span><br><span class="line">SQL&gt; startup mount</span><br><span class="line">ORA-12514: TNS:listener does not currently know of service requested in connect descriptor</span><br></pre></td></tr></table></figure>
+
+<p>监听在服务启动后会自动获取已启动的服务，但是重启时无法获取服务，数据库停止时监听就断开了。需要在listener.ora增加静态监听配置，如下图：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SID_LIST_LISTENER =</span><br><span class="line">  (SID_LIST =</span><br><span class="line">    (SID_DESC =</span><br><span class="line">      (GLOBAL_DBNAME = oggtarget)</span><br><span class="line">      (ORACLE_HOME = E:\app\Administrator\product\11.2.0\dbhome_1)</span><br><span class="line">      (SID_NAME = oggtarget)</span><br><span class="line">    )</span><br><span class="line">    (SID_DESC =</span><br><span class="line">      (GLOBAL_DBNAME = oggtest)</span><br><span class="line">      (ORACLE_HOME = E:\app\Administrator\product\11.2.0\dbhome_1)</span><br><span class="line">      (SID_NAME = oggtest)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">E:\app\Administrator\product\11.2.0\dbhome_1是ORACLE_HOME</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 这时再次启动监听，lsnrtcl-start，就会发现监听服务出现在列表当中，重新挂载数据库成功。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">LSNRCTL&gt; start</span><br><span class="line">Starting tnslsnr: please wait...</span><br><span class="line"></span><br><span class="line">TNSLSNR for 32-bit Windows: Version 11.2.0.1.0 - Production</span><br><span class="line">System parameter file is E:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN\listener.ora</span><br><span class="line">Log messages written to e:\app\administrator\diag\tnslsnr\listener\alert\log.xml</span><br><span class="line">Listening on: (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=y.com.cn)(PORT=1521)))</span><br><span class="line"></span><br><span class="line">Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=ya.com.cn)(PORT=1521)))</span><br><span class="line">STATUS of the LISTENER</span><br><span class="line">------------------------</span><br><span class="line">Alias                     LISTENER</span><br><span class="line">Version                   TNSLSNR for 32-bit Windows: Version 11.2.0.1.0 - Production</span><br><span class="line">Start Date                18-NOV-2019 13:09:43</span><br><span class="line">Uptime                    0 days 0 hr. 0 min. 5 sec</span><br><span class="line">Trace Level               off</span><br><span class="line">Security                  ON: Local OS Authentication</span><br><span class="line">SNMP                      OFF</span><br><span class="line">Listener Parameter File   E:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN\listener.ora</span><br><span class="line">Listener Log File         e:\app\administrator\diag\tnslsnr\listener\alert\log.xml</span><br><span class="line">Listening Endpoints Summary...</span><br><span class="line">  (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=y.com.cn)(PORT=1521)))</span><br><span class="line">Services Summary...</span><br><span class="line">Service &quot;oggtarget&quot; has 1 instance(s).</span><br><span class="line">  Instance &quot;oggtarget&quot;, status UNKNOWN, has 1 handler(s) for this service...</span><br><span class="line">Service &quot;oggtest&quot; has 1 instance(s).</span><br><span class="line">  Instance &quot;oggtest&quot;, status UNKNOWN, has 1 handler(s) for this service...</span><br><span class="line">The command completed successfully</span><br></pre></td></tr></table></figure>
+
+<p>此时再次挂载数据库，并启动归档成功，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; startup mount</span><br><span class="line">ORACLE instance started.</span><br><span class="line"></span><br><span class="line">Total System Global Area 1071333376 bytes</span><br><span class="line">Fixed Size                  1375792 bytes</span><br><span class="line">Variable Size             553648592 bytes</span><br><span class="line">Database Buffers          511705088 bytes</span><br><span class="line">Redo Buffers                4603904 bytes</span><br><span class="line">Database mounted.</span><br><span class="line">SQL&gt; alter database archivelog;</span><br><span class="line"></span><br><span class="line">Database altered.</span><br><span class="line"></span><br><span class="line">SQL&gt; alter database open;</span><br><span class="line"></span><br><span class="line">Database altered.</span><br><span class="line"></span><br><span class="line">SQL&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  关于动态监听和静态监听：  动态只有在数据库启动的情况下，才能连接。  静态则无论数据库是开启还是关闭均能连接。启动监听控制lsnrctl，查看监听状态status，启动start，关闭stop。</p>
+<h4 id="ORA-12638"><a href="#ORA-12638" class="headerlink" title="ORA-12638"></a>ORA-12638</h4><blockquote>
+<p>Credential retrieval failed</p>
+</blockquote>
+<p>证书获取失败 原因:身份验证服务无法检索用户的凭据。Oracle帮助文档给的回复是启用跟踪来确定准确的错误。</p>
+<p>我是在安装数据库过程中报这个错误， 网查更改数据库安装目录<code>ORACLE_HOME``/network/admin</code>下sqlnet.ora文件SQLNET.AUTHENTICATION_SERVICES= (NTS)改成SQLNET.AUTHENTICATION_SERVICES= (NONE)即可。</p>
+<p>AUTHENTICATION_SERVICES参数定义要使用的身份验证方法和版本。必须设置SQLNET。sqlnet中的AUTHENTICATION_SERVICES参数。所有客户端和服务器的ora文件，使每个都能使用支持的身份验证方法。</p>
+<h4 id="ORA-12545"><a href="#ORA-12545" class="headerlink" title="ORA-12545"></a>ORA-12545</h4><blockquote>
+<p>Connect failed because target host or object does not exist</p>
+</blockquote>
+<p>指定的地址无效，或连接的程序不存在。确保地址参数输入正确;最可能不正确的参数是节点名。如果协议是TCP/IP，编辑TNSNAMES。将主机名更改为数字IP地址，然后重试。</p>
+<p>本机安装数据库登录报错，修改TNS中IP地址。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Oracle/"># Oracle</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/11/21/OGG%E4%BB%8B%E7%BB%8D/">OGG介绍</a>
+            
+            
+            <a class="next" rel="next" href="/2019/11/05/Oracle%E5%B8%B8%E7%94%A8%E8%AF%AD%E5%8F%A5/">Oracle常用语句</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 杨佳男 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

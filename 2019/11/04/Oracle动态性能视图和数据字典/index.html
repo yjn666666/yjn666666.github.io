@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="杨佳男">
+
+
+
+
+
+<title>Oracle动态性能视图和数据字典 | 勤练带来力量</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YangJianan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YangJianan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Oracle动态性能视图和数据字典</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">杨佳男</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2019-11-04&nbsp;&nbsp;17:56:54</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Oracle/">Oracle</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>每个Oracle数据库的只读引用表和视图的中心集合统称为数据字典。</p>
+<p>Oracle数据库的一个重要部分是它的数据字典，它是一组只读的表，提供关于数据库的管理元数据。</p>
+<p>数据字典概述</p>
+<ul>
+<li>数据库中每个模式对象的定义，包括列的默认值和完整性约束信息</li>
+<li>为模式对象分配和当前使用的空间量</li>
+<li>Oracle数据库用户的名称、授予用户的权限和角色以及与用户相关的审计信息</li>
+</ul>
+<p>数据字典是每个Oracle数据库数据管理的核心部分。例如，你可以数据库执行以下操作:</p>
+<ul>
+<li>访问数据字典以查找关于用户、模式对象和存储结构的信息</li>
+<li>在每次发出DDL语句时修改数据字典</li>
+</ul>
+<p>因为Oracle数据库将数据字典数据存储在表中，就像其他数据一样，用户可以使用SQL查询数据。例如，用户可以运行SELECT语句来确定他们的权限、模式中存在哪些表、这些表中的哪些列、是否在这些列上构建索引等等。</p>
+<h4 id="数据字典组成"><a href="#数据字典组成" class="headerlink" title="数据字典组成"></a>数据字典组成</h4><h5 id="基表"><a href="#基表" class="headerlink" title="基表"></a>基表</h5><p>这些存储关于数据库的信息。只有Oracle数据库可以读写这些表。用户很少直接访问基表，因为它们是规范化的，而且大多数数据都以加密格式存储。</p>
+<h5 id="试图"><a href="#试图" class="headerlink" title="试图"></a>试图</h5><p>根据基表展示一些有用得信息，像用户名和表名，使用关联和限制语句可以简化信息。试图包含数据字典中得所有对象得名称和描述。一些试图可以查询所有数据库用户，还有一些只返回管理员信息。</p>
+<p>通常，数据字典视图被分组在集合中。在许多情况下，一个集合由三个包含类似信息的视图组成，它们之间通过前缀进行区分通过查询适当的视图，您只能访问与您相关的信息。</p>
+<p>数据字典试图的前缀有三种：DBA和ALL_和USER</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--系统提供的DICTIONARY视图包含所有数据字典视图的名称和简短描述。</span><br><span class="line">SELECT * FROM DICTIONARY;</span><br></pre></td></tr></table></figure>
+
+<p>DUAL是数据字典中较小的一种。</p>
+<p>数据字典基表是在任何Oracle数据库中创建的第一个对象。</p>
+<p>数据库的所有数据字典表和视图都存储在SYSTEM表空间中。因为当数据库打开时，SYSTEM表空间总是在线的，所以当数据库打开时，数据字典总是可用的。</p>
+<p>Oracle数据库用户帐户系统拥有数据字典的所有基表和用户可访问视图。</p>
+<p>在数据库操作期间，Oracle数据库读取数据字典，以确定模式对象的存在以及用户对它们的正确访问。Oracle数据库不断更新数据字典，以反映数据库结构、审计、授权和数据中的变化。</p>
+<p>例如，如果用户hr创建了一个名为的表，那么数据库将向数据字典中添加新行，这些行反映了新表、列、段、区段和hr对表的特权。这些新信息在下一次查询dictionary视图时是可见的。</p>
+<p>数据字典的基表中的数据是Oracle数据库运行所必需的。只有Oracle数据库应该编写或更改数据字典信息。任何Oracle数据库用户都不应该改变SYS模式中包含的行或模式对象，因为这样的行为会损害数据完整性。安全管理员必须严格控制这个中心帐户。</p>
+<p>更改或操作数据字典表中的数据会对数据库操作造成永久性和有害的影响。</p>
+<p>Oracle数据库为许多数据字典视图创建公共同义词，以便用户可以方便地访问它们。</p>
+<p>安全管理员还可以为系统范围内使用的模式对象创建额外的公共同义词。Oracle建议不要对私有模式对象和公共同义词使用相同的名称。</p>
+<p>大部分数据字典信息都在数据字典缓存中，因为数据库经常需要这些信息来验证用户访问和模式对象的状态。</p>
+<p>动态性能视图是一种特殊的视图，它在数据库打开和使用时不断更新。</p>
+<p>在整个操作过程中，Oracle数据库维护一组记录当前数据库活动的虚拟表。</p>
+<p>这些视图是动态的，因为它们在数据库打开和使用时不断更新。视图有时被称为V$视图，因为它们的名称以V$开头。</p>
+<p>动态性能试图包含以下信息</p>
+<ul>
+<li>系统和会话参数</li>
+<li>内存使用和分配</li>
+<li>文件状态(包括RMAN备份文件)</li>
+<li>工作和任务的进展情况</li>
+<li>SQL执行</li>
+<li>统计数据和指标</li>
+</ul>
+<p>动态性能视图有以下主要用途</p>
+<ul>
+<li>Oracle Enterprise Manager使用视图来获取关于数据库的信息。</li>
+<li>管理员可以使用视图进行性能监视和调试。</li>
+</ul>
+<p>动态性能视图基于从数据库内存结构构建的虚拟表。</p>
+<p>视图不是存储在数据库中的常规表。由于数据是动态更新的，因此无法保证视图的读一致性。</p>
+<p>因为动态性能视图不是真正的表，所以数据取决于数据库和数据库实例的状态。</p>
+<p>例如，可以在数据库启动但未挂载时查询V$INSTANCE和V$BGPROCESS。但是，在挂载数据库之前，不能查询V$DATAFILE。</p>
+<p>DBMS_METADATA包提供了用于提取数据库对象的完整定义的接口。</p>
+<p>Oracle数据库提供了两种类型的接口:用于编程控制的灵活、复杂的接口和用于特殊查询的简化接口。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Oracle/"># Oracle</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/11/05/Oracle%E5%B8%B8%E7%94%A8%E8%AF%AD%E5%8F%A5/">Oracle常用语句</a>
+            
+            
+            <a class="next" rel="next" href="/2019/11/01/Oracle%E5%AD%97%E7%AC%A6%E9%9B%86%E8%BD%AC%E6%8D%A2/">Oracle字符集转换</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 杨佳男 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

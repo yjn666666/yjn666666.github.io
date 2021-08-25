@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="杨佳男">
+
+
+
+
+
+<title>InformaticaPowerCenter基础组件 | 勤练带来力量</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YangJianan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YangJianan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">InformaticaPowerCenter基础组件</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">杨佳男</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2019-10-08&nbsp;&nbsp;19:14:48</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Informatica/">Informatica</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><strong>数据库源</strong> <strong>Source</strong>   </p>
+<p><strong>数据库目标</strong> <strong>Target</strong></p>
+<p><strong>行级表达式的计算Expression</strong>   </p>
+<p>对某个字段进行四则运算，对某些字符串进行计算等，可定义输入输出，变量</p>
+<p><strong>过滤组件</strong> <strong>Filter</strong>  </p>
+<p>满足条件的数据通过这个组件，不满足条件的数据会被该组件过滤掉。</p>
+<p><strong>数据类型转换</strong> <strong>Source Qualifier</strong> </p>
+<p>数据源拖入之后，会出现两个组件，将数据库类型长度转换为相同数据类型</p>
+<p>可以在SQ中对表进行关联，限制，分组</p>
+<p><strong>排序</strong> <strong>Sorter</strong>  </p>
+<p>可限制是否大小写敏感，实现Distinct，是否将NULL视作最小值 一般使用在Joiner之前</p>
+<p><strong>关联</strong> <strong>Joiner</strong> </p>
+<p>定义关联条件 最好将Master方为小表 ，连接类型NJ(inner join)，MOJ(left join)，DOJ(rigth join)，FOJ(full join)   在Source Qualifier中也可进行关联，但是关联运行的环境不同</p>
+<p><strong>自关联Self-Join</strong>  </p>
+<p>同一张表进行自我关联才能得到期望的结果</p>
+<p>在从Source Qualifier到Joiner的两个分支上，至少一个分支必须在在Source Qualifier和Joiner之间增加一个其他组件</p>
+<p>Joiner Key必须是经过排序的</p>
+<p>Joiner需要使用Sorter </p>
+<p><strong>查询关联</strong> <strong>Lookup</strong> </p>
+<p>可用于非连接，需添加关联条件，若担心排序增加数据库压力，则可在生成语句时将排序备注掉</p>
+<p>可使用Lookup进行非插即更逻辑处理，</p>
+<p><strong>存储过程</strong> <strong>Stroed Procedure</strong> </p>
+<p>可以调用数据库中的存储过程，也可分为连接和非连接，使用时session配置需要给Stored Procedure提供数据库连接，这个连接指向的是存放存储过程的数据库。</p>
+<p><strong>合并</strong> <strong>Union</strong> </p>
+<p>将两张表或者多张表联合到一起。提供Distinct功能</p>
+<p><strong>事务控制</strong> <strong>Transaction Control</strong> </p>
+<p>控制事务的提交和回滚，定义或重新定义事务的边界，清除了任何来自上游的事务。</p>
+<p>提供了5个支持事务控制的常量：</p>
+<p>TC_CONTINUE_TRANSACTION 默认值 不进行任何事务变更。</p>
+<p>TO_COMMIT_BEFORE 提交当前事务，开始一个新的事物，将当前事务的数据写入目标表。当前行进入新事务中。</p>
+<p>TO_COMMIT_AFTER 提交当前事务，开始一个新事务，将当前事务的数据写入目标表。当前行在本事务中。</p>
+<p>TO_ROLLBACK_BEFORE 回滚当前事务，开始新事物。当前行归入新事物中。</p>
+<p>TO_ROLLBACK_AFTER 回滚当前事务，开始新事物。当前行归入回滚事务中。</p>
+<p>可能导致Transaction Contral失效的组件：Aggregator、Joiner、Rank、Sorter、Custom transformation</p>
+<p><strong>序列</strong> <strong>Sequence</strong> </p>
+<p>自增长的序列，通常用于要生成数据纪录的自增长或序号。多个session操作同一数据集，使用Cached Vlues来保证sequence不会产生冲突。</p>
+<p><strong>数据聚合</strong> <strong>Aggregator</strong><br>完成SUM\AVG\MAX等聚合运算。可以根据指定条件进行汇总，如SUM(SAL,SAL&gt;900)，可以实现行列转换。</p>
+<p><strong>排序</strong> <strong>Rank</strong> </p>
+<p>用于实现Top或Bottom的数据，选择前几或最后几个，在配置中勾选R列来选择排序的列，还可增加分组字段</p>
+<p><strong>更新策略</strong> <strong>Update strategy</strong> </p>
+<p>进行update和delete操作，有两种方法，使用session的属性Treat source rows as 默认是insert，也可以使用该组件指定data drivrn，设置表达式，不同数据不同处理。可以使用Lookup组合时限update else insert操作。</p>
+<p><strong>执行SQL</strong>语句 <strong>SQL Transformation</strong> </p>
+<p>包含两种模式Script Mode和Query Mode，Query Mode分为Static Query Mode和Dynmic Query Mode</p>
+<p><strong>Java Transformation</strong> </p>
+<p>可以使用Java代码处理一些特殊的业务场景，比如判断字段是否含有中文、汉字转拼音、加密/解密、行专列等内置组件不能完成的。</p>
+<p><strong>列转行</strong> <strong>Normalizer</strong></p>
+<p><strong>数据分发</strong> <strong>Router</strong>  </p>
+<p><strong>扩展组件</strong> <strong>Custom Transformation</strong></p>
+<p><strong>HTTP Transformation</strong> </p>
+<p>可以通过HTTP协议连接到HTTP SERVICE使用其服务和应用的能力。功能包括更新和获取HTTP服务器上的数据。包含三种授权方式：Basic，Digest，NTLM**</p>
+<p><strong>Transformation</strong>中的概念</p>
+<ul>
+<li><p>connect与unconnect： 与其它组件直接通过连接线进行连接还是不与其他组件连接。</p>
+</li>
+<li><p>active与passive ： 输入输出数据相同条数则为active，否则为passive</p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Informatica/"># Informatica</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/10/08/Python%E7%94%9F%E6%88%90Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E6%95%B0%E6%8D%AE/">Python生成Oracle数据库表数据</a>
+            
+            
+            <a class="next" rel="next" href="/2019/10/05/Python%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2Excel%E5%86%85%E5%AE%B9/">Python批量替换Excel内容</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 杨佳男 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
