@@ -13,7 +13,7 @@
 
 
 
-<title>博客网站搭建 | 勤练带来力量</title>
+<title>OracleRAC | 勤练带来力量</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">博客网站搭建</h1>
+            <h1 class="post-title">OracleRAC</h1>
             
                 <div class="post-meta">
                     
@@ -202,14 +202,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">2018-08-21&nbsp;&nbsp;18:00:30</a>
+                        Date: <a href="#">2016-02-24&nbsp;&nbsp;20:40:17</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+                                <a href="/categories/Oracle/">Oracle</a>
                             
                         </span>
                     
@@ -218,34 +218,60 @@
         </header>
 
         <div class="post-content">
-            <p>之前使用博客园感觉太繁琐，并且内容编辑不是很方便，无用的菜单和广告页面上到处都是，后来发现Hexo这个博客框架，再结合Github就能实现完全属于自己的博客，申请属于自己的域名，三者合在一起就做出了现在的这个小天地，有需要的小伙伴可以自己试一下，很好玩，当属于自己的网站在互联网上被搜索到的时候，很有感觉，你会在搭建完成后不断通过手机或者电脑登录自己的域名，查看自己的网站，下面来介绍一下整个博客的搭建步骤。</p>
-<h4 id="注册GitHub"><a href="#注册GitHub" class="headerlink" title="注册GitHub"></a>注册GitHub</h4><blockquote>
-<p>用于保存通过Hexo框架生成的网页静态文件。</p>
-</blockquote>
-<h4 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h4><blockquote>
-<p>用于管理Hexo和执行相应的命令。</p>
-</blockquote>
-<h4 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h4><blockquote>
-<p>Hexo通过Node.js来快速完成静态页面生成。</p>
-</blockquote>
-<h4 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h4><blockquote>
-<p>CMD窗口npm install hexo-cli -g</p>
-</blockquote>
-<h4 id="选择主题"><a href="#选择主题" class="headerlink" title="选择主题"></a>选择主题</h4><blockquote>
-<p>在Hexo官网寻找自己喜欢的主题并下载到本地Hexo主题目录下。</p>
-</blockquote>
-<h4 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h4><blockquote>
-<p>修改主路径下的config.yml设置博客后端信息，修改themes中主题的config.yml设置博客主题信息。</p>
-</blockquote>
-<h4 id="申请域名"><a href="#申请域名" class="headerlink" title="申请域名"></a>申请域名</h4><blockquote>
-<p>华为云、腾讯云、阿里云都有域名注册服务。</p>
-</blockquote>
-<h4 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h4><blockquote>
-<p>在域名认证完成后，在域名解析中添加你的项目在GitHub中的IP地址。</p>
-</blockquote>
-<h4 id="个性化"><a href="#个性化" class="headerlink" title="个性化"></a>个性化</h4><blockquote>
-<p>Hexo有很多功能，可以根据自己的喜好添加。</p>
-</blockquote>
+            <p>全称Oracle real application clusters，译为“实时应用集群”， 是Oracle新版数据库中采用的一项新技术，是高可用性的一种，也是Oracle数据库支持网格计算环境的核心技术。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>Oracle RAC主要支持Oracle9i、10g、11g版本，可以支持24 x 7 有效的数据库应用系统，在低成本服务器上构建高可用性数据库系统，并且自由部署应用，无需修改代码。</p>
+<p>在Oracle RAC环境下，Oracle集成提供了集群软件和存储管理软件，为用户降低了应用成本。当应用规模需要扩充时，用户可以按需扩展系统，以保证系统的性能。</p>
+<ul>
+<li>多节点负载均衡;</li>
+<li>提供高可用：故障容错和无缝切换功能，将硬件和软件错误造成的影响最小化;</li>
+<li>通过并行执行技术提高事务响应时间—-通常用于数据分析系统;</li>
+<li>通过横向扩展提高每秒交易数和连接数—-通常对于联机事务系统;</li>
+<li>节约硬件成本，可以用多个廉价PC服务器代替昂贵的小型机或大型机，同时节约相应维护成本;</li>
+<li>可扩展性好，可以方便添加删除节点，扩展硬件资源。</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>相对单机，管理更复杂，要求更高;</li>
+<li>在系统规划设计较差时性能甚至不如单节点;</li>
+<li>可能会增加软件成本(如果使用高配置的pc服务器，Oracle一般按照CPU个数收费)。</li>
+</ul>
+<h4 id="缓存融合"><a href="#缓存融合" class="headerlink" title="缓存融合"></a>缓存融合</h4><p>在Oracle9i之前，RAC的名称是OPS (Oracle parallel Server)。RAC 与 OPS 之间的一个较大区别是，RAC采用了Cache Fusion(高速缓存合并)技术。在 OPS 中，节点间的数据请求需要先将数据写入磁盘，然后发出请求的节点才可以读取该数据。使用Cache fusion时，RAC的各个节点的数据缓冲区通过高速、低延迟的内部网络进行数据块的传输， 目的有是保证缓存的一致性，并减少共享磁盘IO的消耗，因此在RAC环境中多个节点保留了同一份的DB CACHE。</p>
+<h4 id="缓存融合工作原理"><a href="#缓存融合工作原理" class="headerlink" title="缓存融合工作原理"></a>缓存融合工作原理</h4><ul>
+<li>其中一个节点会从共享数据库中读取一个block到db cache中</li>
+<li>这个节点会在所有的节点进行交叉db block copy</li>
+<li>当任何一个节点缓存被修改的时候，就会在节点之间进行缓存修改</li>
+<li>为了达到存储的一致最终修改的结果也会写到磁盘上</li>
+</ul>
+<h4 id="一个数据库"><a href="#一个数据库" class="headerlink" title="一个数据库"></a>一个数据库</h4><p>在一个应用环境当中，所有的服务器使用和管理同一个数据库，目的是为了分散每一台服务器的工作量，硬件上至少需要两台以上的服务器，而且还需要一个共享存储设备。同时还需要两类软件，一个是集群软件，另外一个就是Oracle数据库中的RAC组件。<br>同时所有服务器上的OS都应该是同一类OS，根据负载均衡的配置策略，当一个客户端发送请求到某一台服务的listener后，这台服务器根据我们的负载均衡策略，会把请求发送给本机的RAC组件处理也可能会发送给另外一台服务器的RAC组件处理，处理完请求后，RAC会通过集群软件来访问我们的共享存储设备。<br>逻辑结构上看，每一个参加集群的节点有一个独立的instance（数据库实例），这些instance访问同一个数据库。节点之间通过集群软件的通讯层（communication layer）来进行通讯。同时为了减少IO的消耗，存在了一个全局缓存服务，因此每一个数据库的instance，都保留了一份相同的数据库cacheI</p>
+<h4 id="RAC特点"><a href="#RAC特点" class="headerlink" title="RAC特点"></a>RAC特点</h4><ul>
+<li>每一个节点的instance都有自己的SGA-</li>
+<li>每一个节点的instance都有自己的background process</li>
+<li>每一个节点的instance都有自己的redo logs</li>
+<li>每一个节点的instance都有自己的undo表空间</li>
+<li>所有节点都共享一份datafiles和controlfiles</li>
+<li>还提出了一个缓存融合的技术(Cache fusion)</li>
+</ul>
+<h4 id="RAC四种服务"><a href="#RAC四种服务" class="headerlink" title="RAC四种服务"></a>RAC四种服务</h4><ul>
+<li>Crsd -集群资源服务</li>
+<li>Cssd - 集群同步服务</li>
+<li>Evmd - 事件管理服务</li>
+<li>oprocd - 节点检测监控</li>
+</ul>
+<h4 id="RAC三类资源"><a href="#RAC三类资源" class="headerlink" title="RAC三类资源"></a>RAC三类资源</h4><ul>
+<li><p>VIP - 虚拟IP地址(Virtual IP)</p>
+</li>
+<li><p>OCR - Oracle Cluster Registry(集群注册文件)</p>
+<p>记录每个节点的相关信息</p>
+</li>
+<li><p>Voting Disk - Establishes quorum (表决磁盘)</p>
+<p>仲裁机制用于仲裁多个节点向共享节点同时写的行为，这样做是为了避免发生冲突。</p>
+</li>
+</ul>
+<h4 id="RAC组件进程"><a href="#RAC组件进程" class="headerlink" title="RAC组件进程"></a>RAC组件进程</h4><ul>
+<li>LMS - Global Cache Service Process 全局缓存服务进程</li>
+<li>LMD - Global Enqueue Service Daemon 全局查询服务守护进程</li>
+<li>LMON - Global Enqueue Service Monitor全局查询服务监视进程</li>
+<li>LCK0 - Instance Enqueue Process 实例队列进程</li>
+</ul>
 
         </div>
 
@@ -264,7 +290,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E5%85%B6%E4%BB%96/"># 其他</a>
+                        <a href="/tags/Oracle/"># Oracle</a>
                     
                         
                 </span>
@@ -277,10 +303,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2018/08/21/hello-world/">Hello World</a>
+                <a class="prev" rel="prev" href="/2018/08/21/%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/">博客网站搭建</a>
             
             
-            <a class="next" rel="next" href="/2016/02/24/OracleRAC/">OracleRAC</a>
+            <a class="next" rel="next" href="/2015/06/24/Oracle%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84/">Oracle存储结构</a>
             
         </section>
 
