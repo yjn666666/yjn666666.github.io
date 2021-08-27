@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="杨佳男">
+
+
+
+
+
+<title>软件模式 | 勤练带来力量</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YangJianan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YangJianan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">软件模式</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">杨佳男</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2021-08-27&nbsp;&nbsp;09:44:23</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%A1%8C%E4%B8%9A%E7%9F%A5%E8%AF%86/">行业知识</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="软件模式"><a href="#软件模式" class="headerlink" title="软件模式"></a>软件模式</h2><h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><h4 id="按目的分类"><a href="#按目的分类" class="headerlink" title="按目的分类"></a>按目的分类</h4><h5 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h5><ul>
+<li>抽象工厂（Abstract Factory）</li>
+<li>构建器（Builder）</li>
+<li>工厂方法（Factory Method）</li>
+<li>原型（Prototype）</li>
+<li>单独（Singleton）</li>
+</ul>
+<h5 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h5><ul>
+<li>适配（Adapter）</li>
+<li>桥（Bridge）</li>
+<li>复合（Composite）</li>
+<li>装饰（Decorator）</li>
+<li>外观（Facade）</li>
+<li>轻量（Flyweight）</li>
+<li>代理（Proxy）</li>
+</ul>
+<h5 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h5><ul>
+<li>责任链（Chain of Responsibility）</li>
+<li>命令（Command）</li>
+<li>解释器（Interpreter）</li>
+</ul>
+<blockquote>
+<p>主要用在编译器中</p>
+</blockquote>
+<ul>
+<li>迭代（Iterator）</li>
+</ul>
+<blockquote>
+<p>迭代器模式支持以不同的方式遍历一个聚合对象，负责的聚合可用多种方法来进行遍历；允许在同一个聚合上可以有多个遍历，每个地迭代器保持它自己的遍历状态，因此可以同时进行多个遍历操作。</p>
+</blockquote>
+<ul>
+<li>中介（Mediator）</li>
+</ul>
+<blockquote>
+<p>系统的结构不会因为新对象的引入带来大量的修改工作。</p>
+</blockquote>
+<ul>
+<li><p>记忆碎片，备忘（Memento）</p>
+</li>
+<li><p>观察（Observer）</p>
+</li>
+<li><p>状态（State）</p>
+</li>
+<li><p>策略（Strategy）</p>
+</li>
+</ul>
+<blockquote>
+<p>让算法独立于使用它的客户二变化，目的是将行为和环境分隔，当出现新的行为时，只需要实现新的策略。</p>
+</blockquote>
+<ul>
+<li><p>样板方法（Template Method）</p>
+</li>
+<li><p>访问者（Visitor）</p>
+</li>
+</ul>
+<h4 id="按范围分类"><a href="#按范围分类" class="headerlink" title="按范围分类"></a>按范围分类</h4><h5 id="类设计模式"><a href="#类设计模式" class="headerlink" title="类设计模式"></a>类设计模式</h5><h5 id="对象设计模式"><a href="#对象设计模式" class="headerlink" title="对象设计模式"></a>对象设计模式</h5><h3 id="分析模式"><a href="#分析模式" class="headerlink" title="分析模式"></a>分析模式</h3><h3 id="组织和过程模式"><a href="#组织和过程模式" class="headerlink" title="组织和过程模式"></a>组织和过程模式</h3>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E8%A1%8C%E4%B8%9A%E7%9F%A5%E8%AF%86/"># 行业知识</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/04/21/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%8C%BA%E7%BB%8F%E5%86%B0%E9%89%B4/">《挺经冰鉴》曾国藩</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 杨佳男 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

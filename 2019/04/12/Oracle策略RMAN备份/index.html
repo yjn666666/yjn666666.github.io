@@ -13,7 +13,7 @@
 
 
 
-<title>数据库ACID | 勤练带来力量</title>
+<title>Oracle策略RMAN备份 | 勤练带来力量</title>
 
 
 
@@ -127,73 +127,11 @@
                 <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">数据库ACID</h1>
+            <h1 class="post-title">Oracle策略RMAN备份</h1>
             
                 <div class="post-meta">
                     
@@ -202,14 +140,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">2021-08-25&nbsp;&nbsp;17:01:37</a>
+                        Date: <a href="#">2019-04-12&nbsp;&nbsp;19:17:56</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                                <a href="/categories/Oracle/">Oracle</a>
                             
                         </span>
                     
@@ -218,13 +156,7 @@
         </header>
 
         <div class="post-content">
-            <p>以去火锅店刷肉为例</p>
-<h4 id="Atomicity-原子性"><a href="#Atomicity-原子性" class="headerlink" title="Atomicity 原子性"></a><em>Atomicity 原子性</em></h4><p>　　　　要么吃要么不吃，肯定有个决定</p>
-<h4 id="Consistency-一致性"><a href="#Consistency-一致性" class="headerlink" title="Consistency 一致性"></a><em>Consistency 一致性</em></h4><p>　　　　所有问你吃什么的人得到的回复都是吃火锅</p>
-<h4 id="Isolation-隔离性"><a href="#Isolation-隔离性" class="headerlink" title="Isolation 隔离性"></a><em>Isolation 隔离性</em></h4><p>　　　　你从来都不会去别人的锅里涮肉</p>
-<h4 id="Durability-持久性"><a href="#Durability-持久性" class="headerlink" title="Durability 持久性"></a><em>Durability 持久性</em></h4><p>　　　　到嘴里的肉不可能再放到锅里</p>
-<p>要不要去吃火锅呢</p>
-
+            
         </div>
 
         
@@ -242,7 +174,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"># 数据库</a>
+                        <a href="/tags/Oracle/"># Oracle</a>
                     
                         
                 </span>
@@ -255,8 +187,10 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/2019/05/25/%E6%95%B0%E6%8D%AE%E5%BA%93ACID/">数据库ACID</a>
             
-            <a class="next" rel="next" href="/2021/08/25/%E5%B7%A5%E5%85%B7PLSQLDeveloper%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%85%E8%AF%AD%E5%8F%A5/">工具PLSQLDeveloper自动补充语句</a>
+            
+            <a class="next" rel="next" href="/2018/08/21/hello-world/">Hello World</a>
             
         </section>
 
