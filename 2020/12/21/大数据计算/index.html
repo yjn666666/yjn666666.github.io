@@ -13,7 +13,7 @@
 
 
 
-<title>软件模式 | 勤练带来力量</title>
+<title>大数据计算 | 勤练带来力量</title>
 
 
 
@@ -127,73 +127,11 @@
                 <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">软件模式</h1>
+            <h1 class="post-title">大数据计算</h1>
             
                 <div class="post-meta">
                     
@@ -202,14 +140,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">2021-08-27&nbsp;&nbsp;09:44:23</a>
+                        Date: <a href="#">2020-12-21&nbsp;&nbsp;20:13:57</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E8%A1%8C%E4%B8%9A%E7%9F%A5%E8%AF%86/">行业知识</a>
+                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
                             
                         </span>
                     
@@ -218,62 +156,10 @@
         </header>
 
         <div class="post-content">
-            <h2 id="软件模式"><a href="#软件模式" class="headerlink" title="软件模式"></a>软件模式</h2><h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><h4 id="按目的分类"><a href="#按目的分类" class="headerlink" title="按目的分类"></a>按目的分类</h4><h5 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h5><ul>
-<li>抽象工厂（Abstract Factory）</li>
-<li>构建器（Builder）</li>
-<li>工厂方法（Factory Method）</li>
-<li>原型（Prototype）</li>
-<li>单独（Singleton）</li>
-</ul>
-<h5 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h5><ul>
-<li>适配（Adapter）</li>
-<li>桥（Bridge）</li>
-<li>复合（Composite）</li>
-<li>装饰（Decorator）</li>
-<li>外观（Facade）</li>
-<li>轻量（Flyweight）</li>
-<li>代理（Proxy）</li>
-</ul>
-<h5 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h5><ul>
-<li>责任链（Chain of Responsibility）</li>
-<li>命令（Command）</li>
-<li>解释器（Interpreter）</li>
-</ul>
-<blockquote>
-<p>主要用在编译器中</p>
-</blockquote>
-<ul>
-<li>迭代（Iterator）</li>
-</ul>
-<blockquote>
-<p>迭代器模式支持以不同的方式遍历一个聚合对象，负责的聚合可用多种方法来进行遍历；允许在同一个聚合上可以有多个遍历，每个地迭代器保持它自己的遍历状态，因此可以同时进行多个遍历操作。</p>
-</blockquote>
-<ul>
-<li>中介（Mediator）</li>
-</ul>
-<blockquote>
-<p>系统的结构不会因为新对象的引入带来大量的修改工作。</p>
-</blockquote>
-<ul>
-<li><p>记忆碎片，备忘（Memento）</p>
-</li>
-<li><p>观察（Observer）</p>
-</li>
-<li><p>状态（State）</p>
-</li>
-<li><p>策略（Strategy）</p>
-</li>
-</ul>
-<blockquote>
-<p>让算法独立于使用它的客户二变化，目的是将行为和环境分隔，当出现新的行为时，只需要实现新的策略。</p>
-</blockquote>
-<ul>
-<li><p>样板方法（Template Method）</p>
-</li>
-<li><p>访问者（Visitor）</p>
-</li>
-</ul>
-<h4 id="按范围分类"><a href="#按范围分类" class="headerlink" title="按范围分类"></a>按范围分类</h4><h5 id="类设计模式"><a href="#类设计模式" class="headerlink" title="类设计模式"></a>类设计模式</h5><h5 id="对象设计模式"><a href="#对象设计模式" class="headerlink" title="对象设计模式"></a>对象设计模式</h5><h3 id="分析模式"><a href="#分析模式" class="headerlink" title="分析模式"></a>分析模式</h3><h3 id="组织和过程模式"><a href="#组织和过程模式" class="headerlink" title="组织和过程模式"></a>组织和过程模式</h3>
+            <p>Mahout</p>
+<p>Spark</p>
+<p>Storm</p>
+
         </div>
 
         
@@ -291,7 +177,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E8%A1%8C%E4%B8%9A%E7%9F%A5%E8%AF%86/"># 行业知识</a>
+                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"># 大数据</a>
                     
                         
                 </span>
@@ -304,8 +190,10 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/2020/12/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84/">大数据架构</a>
             
-            <a class="next" rel="next" href="/2021/04/21/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%8C%BA%E7%BB%8F%E5%86%B0%E9%89%B4/">《挺经冰鉴》曾国藩</a>
+            
+            <a class="next" rel="next" href="/2020/12/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86/">大数据采集</a>
             
         </section>
 
