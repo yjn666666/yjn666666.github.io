@@ -127,6 +127,68 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -156,14 +218,43 @@
         </header>
 
         <div class="post-content">
-            <p>Hadoop</p>
-<p>Linux</p>
-<p>MySQL</p>
-<p>Oracle</p>
-<p>Docker</p>
-<p>KVM</p>
-<p>MongoDB</p>
-<p>Redis</p>
+            <h3 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h3><p>Apache Hadoop 软件库是一个框架，允许使用简单的编程模型跨计算机集群分布式处理大型数据集。</p>
+<p>它旨在从单个服务器扩展到数千台机器，每台机器都提供本地计算和存储。该库本身不是依靠硬件来提供高可用性，而是设计用于检测和处理应用层的故障，因此在计算机集群之上提供高可用性服务，每台计算机都可能容易出现故障。</p>
+<p>起源于谷歌的三篇论文：GFS、Mapreduce、BigTable。</p>
+<h4 id="Hadoop组成"><a href="#Hadoop组成" class="headerlink" title="Hadoop组成"></a>Hadoop组成</h4><ul>
+<li><p>Hadoop Common</p>
+<blockquote>
+<p>支持其他 Hadoop 模块的通用实用程序。</p>
+</blockquote>
+</li>
+<li><p>Hadoop 分布式文件系统 (HDFS)</p>
+<blockquote>
+<p>提供对应用程序数据的高吞吐量访问的分布式文件系统。</p>
+</blockquote>
+</li>
+<li><p>Hadoop YARN</p>
+<blockquote>
+<p>用于作业调度和集群资源管理的框架。</p>
+</blockquote>
+</li>
+<li><p>Hadoop MapReduce</p>
+<blockquote>
+<p>一个基于 YARN 的系统，用于并行处理大型数据集。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>HDFS通常部署在Linux下，Linux命令要熟练使用。</p>
+<h3 id="MySQL-Oracle"><a href="#MySQL-Oracle" class="headerlink" title="MySQL\Oracle"></a>MySQL\Oracle</h3><p>大数据最终的价值在于发现其中的价值，最终展现的方式还是要回归到关系型数据库中。</p>
+<h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><p>开源的软件部署解决方案。</p>
+<p>容器和虚拟机具有相似的资源隔离和分配优势，但功能不同，因为容器虚拟的是操作系统而不是硬件。容器更便携，更高效。</p>
+<p>容器是应用层的抽象，将代码和依赖项打包在一起。多个容器可以在同一台机器上运行，并与其他容器共享操作系统内核，每个容器作为用户空间中的独立进程运行。容器占用的空间比 VM 少（容器映像的大小通常为数十 MB），可以处理更多应用程序，并且需要更少的 VM 和操作系统。</p>
+<p>虚拟机 (VM) 是将一台服务器变成多台服务器的物理硬件的抽象。管理程序允许多个 VM 在一台机器上运行。每个 VM 都包含操作系统、应用程序、必要的二进制文件和库的完整副本 - 占用数十 GB。VM 的启动速度也可能很慢。</p>
+<p>容器和虚拟机一起使用为部署和管理应用程序提供了极大的灵活性。</p>
+<h3 id="KVM"><a href="#KVM" class="headerlink" title="KVM"></a>KVM</h3><p>基于内核的虚拟机 Kernel-based Virtual Machine（KVM）是一种内建于 Linux® 中的开源虚拟化技术。具体而言，KVM 可帮助您将 Linux 转变为虚拟机监控程序，使主机计算机能够运行多个隔离的虚拟环境，即虚拟客户机或虚拟机（VM）。</p>
+<p>KVM 是 Linux 内核的一部分，因此所有这些组件它都有。每个虚拟机都像普通的 Linux 进程一样实施，由标准的 Linux 调度程序进行调度，并且使用专门的虚拟硬件，如网卡、图形适配器、CPU、内存和磁盘等。</p>
+<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><p>一种文档数据库，它所具备的可扩展性和灵活性可以满足您对查询和索引的需求。</p>
+<p>本质上是一种分布式数据库，所以高可用性、横向扩展和地理分布都是内置且易用的。</p>
+<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>Redis 是一种开源（BSD 许可）、内存中数据结构存储，用作数据库、缓存和消息代理。Redis 提供了诸如字符串、散列、列表、集合、带范围查询的排序集合、位图、超级日志、地理空间索引和流等数据结构。Redis 内置复制、Lua 脚本、LRU 驱逐、事务和不同级别的磁盘持久化，并通过 Redis Sentinel 和 Redis Cluster 自动分区提供高可用性</p>
 
         </div>
 

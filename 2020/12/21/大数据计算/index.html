@@ -127,6 +127,68 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -156,9 +218,10 @@
         </header>
 
         <div class="post-content">
-            <p>Mahout</p>
-<p>Spark</p>
-<p>Storm</p>
+            <h3 id="Mahout"><a href="#Mahout" class="headerlink" title="Mahout"></a>Mahout</h3><p>Apache Software Foundation（ASF）旗下的一个开源项目，提供一些可扩展的机器学习领域经典算法的实现，旨在帮助开发人员更加方便快捷地创建智能应用程序。算法库，集成了很多算法，可以有效地扩展到Hadoop集群。</p>
+<p>主要用于推荐引擎，聚类，分类。</p>
+<h3 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h3><p>类似于Hadoop，最大的优化是让计算任务的中间结果可以存储在内存中，不需要每次都写入HDFS，更适用于需要迭代的MapReduce算法场景中，可以获得更好的性能提升。</p>
+<h3 id="Storm"><a href="#Storm" class="headerlink" title="Storm"></a>Storm</h3><p>Storm是一个免费并开源的分布式实时计算系统。利用Storm可以很容易做到可靠地处理无限的数据流，像Hadoop批量处理大数据一样，Storm可以实时处理数据。</p>
 
         </div>
 
@@ -190,10 +253,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/12/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84/">大数据架构</a>
+                <a class="prev" rel="prev" href="/2020/12/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">大数据存储</a>
             
             
-            <a class="next" rel="next" href="/2020/12/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86/">大数据采集</a>
+            <a class="next" rel="next" href="/2020/12/21/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84/">大数据架构</a>
             
         </section>
 
