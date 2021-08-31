@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="杨佳男">
+
+
+
+
+
+<title>SQL优化 | 勤练带来力量</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YangJianan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YangJianan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">SQL优化</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">杨佳男</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2019-12-31&nbsp;&nbsp;20:56:47</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Oracle/">Oracle</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote>
+<p>RBO: Rule-Based Optimization 基于规则的优化器</p>
+</blockquote>
+<blockquote>
+<p>CBO: Cost-Based Optimization 基于代价的优化器</p>
+</blockquote>
+<blockquote>
+<p>执行计划缩进最大的最先执行，相同缩进最上最先执行</p>
+</blockquote>
+<blockquote>
+<p>ORACLE对执行过的SQL语句进行高速缓冲的机制，解析过且确定了执行路径的SQL语句存放在SGA的共享池中，每次执行前在SGA中查找是否有缓冲的SQL语句。</p>
+</blockquote>
+<blockquote>
+<p>外层表OUTER TABLE</p>
+<p>匹配表PROBED TABLE</p>
+<p>内层表INNER TABLE</p>
+</blockquote>
+<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><blockquote>
+<p>缩短目标SQL语句的执行时间。</p>
+</blockquote>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul>
+<li><p>找到执行时间最长，消耗资源最多的TOP SQL。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">  FROM (SELECT ROWNUM,</span><br><span class="line">               SUBSTR(a.sql_text, 1, 200) sql_text,</span><br><span class="line">               TRUNC(a.disk_reads / DECODE(a.executions, 0, 1, a.executions)) reads_per_execution,</span><br><span class="line">               a.buffer_gets,</span><br><span class="line">               a.disk_reads,</span><br><span class="line">               a.executions,</span><br><span class="line">               a.sorts,</span><br><span class="line">               a.address</span><br><span class="line">          FROM v$sqlarea a</span><br><span class="line">         ORDER BY 3 DESC)</span><br><span class="line"> WHERE ROWNUM &lt; 10;</span><br></pre></td></tr></table></figure></li>
+<li><p>分析资源消耗（AWR），分析统计信息，分析执行计划（EXPLAIN）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SET AUTOTRACE ON;</span><br><span class="line">explain plan for select * from ...</span><br><span class="line">select * from table(dbms_xplan.display);</span><br></pre></td></tr></table></figure></li>
+<li><p>修正SQL并验证。</p>
+</li>
+</ul>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li><p>重新收集统计信息</p>
+</li>
+<li><p>可通过ANALYZE、DBMS_DDL、DBMS_UTILITY、DBMS_STATS等包批量分析。</p>
+</li>
+<li><p>修改SQL写法</p>
+</li>
+<li><p>全表扫描或排序的，建立合适的索引</p>
+</li>
+<li><p>SQL执行计划不稳定的使用HINT、SQL PROFILE等</p>
+</li>
+<li><p>重新设计表，索引，重新组织表的数据</p>
+</li>
+<li><p>增加并行</p>
+<blockquote>
+<p>增加额外的硬件资源消耗，使执行时间缩短，针对CPU、内存、I/O通道，多个RAC下数据库节点的额外利用。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="SQL语句执行步骤"><a href="#SQL语句执行步骤" class="headerlink" title="SQL语句执行步骤"></a>SQL语句执行步骤</h3><ul>
+<li>语法分析</li>
+<li>语义分析</li>
+<li>试图转换</li>
+<li>表达式转换</li>
+<li>选择优化器</li>
+<li>选择连接方式</li>
+<li>选择连接顺序</li>
+<li>选择数据搜索顺序</li>
+<li>运行</li>
+</ul>
+<h3 id="访问方式"><a href="#访问方式" class="headerlink" title="访问方式"></a>访问方式</h3><h4 id="全表扫描"><a href="#全表扫描" class="headerlink" title="全表扫描"></a>全表扫描</h4><blockquote>
+<p>TABLE ACCESS FULL</p>
+</blockquote>
+<h4 id="ROWID表存取"><a href="#ROWID表存取" class="headerlink" title="ROWID表存取"></a>ROWID表存取</h4><blockquote>
+<p>TABLE ACCESS BY ROWID</p>
+</blockquote>
+<h4 id="索引扫"><a href="#索引扫" class="headerlink" title="索引扫"></a>索引扫</h4><blockquote>
+<p>TABLE ACCESS BY INDEX SCAN</p>
+<p>分物中，唯一扫描、范围扫描、全扫描、快速扫描、跳跃扫描。</p>
+</blockquote>
+<h3 id="连接方式"><a href="#连接方式" class="headerlink" title="连接方式"></a>连接方式</h3><h4 id="排序合并连接"><a href="#排序合并连接" class="headerlink" title="排序合并连接"></a>排序合并连接</h4><blockquote>
+<p>SORT MERGE JOIN</p>
+</blockquote>
+<h4 id="嵌套循环连接"><a href="#嵌套循环连接" class="headerlink" title="嵌套循环连接"></a>嵌套循环连接</h4><blockquote>
+<p>NESTED LOOPS（SEMI\ANIT\OUTER），嵌套循环实现行源间的内连接，并获取内连接结果。上面的行源是驱动行源，也叫外行源；下面的行源为被驱动行源，内行源。只返回内行源中得以匹配的相关数据。最合适的场景是外行源小，内行源上有理想的可用索引。</p>
+</blockquote>
+<h4 id="哈希连接"><a href="#哈希连接" class="headerlink" title="哈希连接"></a>哈希连接</h4><blockquote>
+<p>HASH JOIN</p>
+</blockquote>
+<h4 id="笛卡尔积连接"><a href="#笛卡尔积连接" class="headerlink" title="笛卡尔积连接"></a>笛卡尔积连接</h4><blockquote>
+<p>CARTESIAN PRODUCT</p>
+</blockquote>
+<h3 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h3><ul>
+<li><p>降低逻辑读，IN改写为关联，大部分SQL优化问题都可以通过增加或减少索引的方式解决。</p>
+</li>
+<li><p>单键值B树索引，NULL值不入索引，但复合B树索引NULL入索引。</p>
+<p>例：将ON T1（字段）改为ON T1（字段，0）</p>
+</li>
+<li><p>LIKE百分号开头的字段不走索引，可以使用REVERSE函数修改。</p>
+<p>例：字段 LIKE ‘%AB’ 改为 REVERSE（字段） LIKE REVERSE（’%AB’）</p>
+</li>
+<li><p>有些SQL执行时间长是因为SQL所需的硬件资源得不到保障。</p>
+<p>通过AWR报告，或Satspack报告分析SQL运行时间和CUP资源情况。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AWR执行脚本</span><br><span class="line">ORACLE_HOME/RDBMS/ADMIN/AWRSQRPT.sql</span><br></pre></td></tr></table></figure></li>
+<li><p>DISTINCT、UNION 、MINOS、INTERSECT、ORDER BY会启动SQL引擎执行耗费资源的排序（SORT）功能。</p>
+</li>
+<li><p>把并行查询，并行DDL、并行DML、并行加载数据、并行备份与恢复、并行收集统计信息</p>
+</li>
+<li><p>MEGER USING中的对比数据使用临时表，减少对比数据量，拆分MATCHED与NOT MATCHED</p>
+</li>
+<li><p>分区表本地索引比全局索引有更多的应用和优势。</p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Oracle/"># Oracle</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/03/04/Oracle%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%AF%86%E5%8F%8A%E8%84%B1%E6%95%8F%E5%87%BD%E6%95%B0/">Oracle数据加密及脱敏函数</a>
+            
+            
+            <a class="next" rel="next" href="/2019/12/19/Oracle%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/">Oracle备份与恢复三种方式</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 杨佳男 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

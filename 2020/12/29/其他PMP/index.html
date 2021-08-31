@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="杨佳男">
+
+
+
+
+
+<title>PMP | 勤练带来力量</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YangJianan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YangJianan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归 档</a>
+                
+                    <a class="menu-item" href="/categories">分 类</a>
+                
+                    <a class="menu-item" href="/tags">标 签</a>
+                
+                    <a class="menu-item" href="/about">关 于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">PMP</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">杨佳男</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2020-12-29&nbsp;&nbsp;17:52:43</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>PMP（Project Management Professional）项目管理专业人士资格认证</p>
+<h3 id="报考条件"><a href="#报考条件" class="headerlink" title="报考条件"></a>报考条件</h3><ul>
+<li>报名考生必须具备35小时以上涵盖项目管理知识体系中十大知识领域的项目管理培训经历。</li>
+<li>申请者需具备学士学位或以上者，要求申请者在申请之日前6年内，至少具有4500小时的项目管理经验，其包括五大项目管理过程组(启动过程、计划过程、实施过程、控制过程和收尾过程)，累计参与项目管理月数至少达到36个月。</li>
+</ul>
+<h3 id="报考方式"><a href="#报考方式" class="headerlink" title="报考方式"></a>报考方式</h3><p>PMP考试报名需要先在PMI网站进行英文报名，英文报名成功后才能在中国国际人才交流基金会网站进行中文报名。</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.pmi.org/">英文报名入口</a></p>
+<blockquote>
+<p>PMI官网对英文报名的材料进行审核，审核通过后进行下一步，中途还有一种是PMP考试审查，是由PMI的计算机系统自动抽查，抽查中的考生需要按要求将材料快递至PMI进行审查，被抽查的几率大约在10%左右。</p>
+</blockquote>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://exam.chinapmp.cn/">中文报名入口</a></p>
+<blockquote>
+<p>注册、网上填写信息、审核相应信息、审核完成后缴费，缴费成功即为报名成功，中文报名成功后，在考前下载准考证并打印，考试当天携带证件参加PMP考试即可。</p>
+<p>初考报名费用3900元，重考报名费用2500元，费用实时到账，由中国国际人才交流基金会开具发票。</p>
+<p>考试当天携带好准考证和身份证进入考场，参加PMP考试。</p>
+<p>发票信息必须在缴费时填写，且所填发票信息一经确认提交，无法变更。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="考试培训"><a href="#考试培训" class="headerlink" title="考试培训"></a>考试培训</h3><p>考试报名条件，要求报名考生必须具备35小时以上涵盖项目管理知识体系中十大知识领域的项目管理培训经历，并且在考试报名时能够出具培训证明。因此参加PMP考试培训是很有必有的。</p>
+<p>训机构的培训费用在3000—4000左右。</p>
+<h3 id="合格标准"><a href="#合格标准" class="headerlink" title="合格标准"></a>合格标准</h3><p>175道计分题中答对106道试题即算通过，五个过程组不能简单根据A、T、B、N的数量来判断是否通过，仍需以PMI给出的PASS或FAIL为通过标准。</p>
+<p>在考试结束后一个月左右可以查询PMP考试成绩。</p>
+<p><a target="_blank" rel="noopener" href="http://www.pmi.org/">成绩查询地址</a></p>
+<h3 id="续证条件"><a href="#续证条件" class="headerlink" title="续证条件"></a>续证条件</h3><ul>
+<li>在获得证书当次考试之日起每三年内应获得至少60个PDU（Professional Development Units）。</li>
+<li>向PMI支付150美金作为此期间您PMP®资质维护管理的费用。</li>
+<li>承诺遵守项目管理职业道德规范。</li>
+</ul>
+<h3 id="五大过程组"><a href="#五大过程组" class="headerlink" title="五大过程组"></a>五大过程组</h3><ul>
+<li><p>启动过程组</p>
+<blockquote>
+<p>基于现有的可用信息，以往项目的经验教训总结和访谈相关干系人，来实施项目评审，以便于在给定的假设条件和/或制约因素下支持新的产品或服务的可行性评估。</p>
+</blockquote>
+<blockquote>
+<p>识别基于业务需求的关键可交付成果，以管理客户的期望和指导项目目标的实现。</p>
+</blockquote>
+<blockquote>
+<p>应用合适的工具和技术进行干系人分析，以调整干系人期望并获得干系人对项目的支持。</p>
+</blockquote>
+<blockquote>
+<p>根据当前的事业环境因素、组织过程资产、历史数据和专家判断，来识别项目的高层级风险、假设条件和制约因素，以便实施组织战略计划。</p>
+</blockquote>
+<blockquote>
+<p>通过整合和分析收集到的信息，参与项目章程的制定，以保证项目干系人对项目章程内容达成一致意见。</p>
+</blockquote>
+<blockquote>
+<p>通过获取发起人对项目章程的审批，来对项目经理进行正式授权，获得承诺并使其接受项目。</p>
+</blockquote>
+<blockquote>
+<p>与干系人(包括发起人、客户和主题专家)进行效益分析，以验证项目定位与组织战略和预期的商业价值的一致性。</p>
+</blockquote>
+<blockquote>
+<p>通知批准项目章程的相关干系人，以确保对关键可交付成果、关键里程碑和干系人角色职责达成共识。</p>
+</blockquote>
+</li>
+<li><p>规划过程组</p>
+<blockquote>
+<p>根据项目章程和以往项目的经验教训总结，使用需求收集技术，审查和评估详细的项目需求、制约因素与假设条件，以建立详细的项目可交付成果。</p>
+</blockquote>
+<blockquote>
+<p>基于批准的项目范围，使用范围管理技术制定项目范围管理计划文件，用来指导定义、维护和管理项目的范围。</p>
+</blockquote>
+<blockquote>
+<p>根据项目的范围、进度、资源、批准的项目章程和其他有用信息，制定项目成本管理计划，使用估算技术来管理项目成本。</p>
+</blockquote>
+<blockquote>
+<p>基于批准的项目可交付成果、总体里程碑进度计划、范围和资源管理计划，制定详细的项目进度计划以管理项目按时完成。</p>
+</blockquote>
+<blockquote>
+<p>通过定义项目角色和人员职责来制定一份人力资源管理计划，以创建项目组织机构图和指导有关资源将被如何分配和管理。</p>
+</blockquote>
+<blockquote>
+<p>基于项目的组织结构和干系人需求，制定一份沟通管理计划以定义和管理项目信息流动。</p>
+</blockquote>
+<blockquote>
+<p>基于项目范围、预算和进度计划制定一份采购管理计划，以确保项目所需的资源可用。</p>
+</blockquote>
+<blockquote>
+<p>基于项目的范围、风险和需求，明确项目及其产品的质量标准，制定一份质量管理计划以防止缺陷发生和控制质量成本。</p>
+</blockquote>
+<blockquote>
+<p>通过定义如何处理和控制变更，制定一份详细的变更管理计划来跟踪和管理项目变更。</p>
+</blockquote>
+<blockquote>
+<p>制定风险管理计划来对风险进行识别、分析和优先级排序，并确定风险应对策略，以便于在整个项目生命周期管理项目的不确定性和机会。</p>
+</blockquote>
+<blockquote>
+<p>根据适当的政策和程序，向项目干系人传达项目管理计划以获得批准，并展开项目执行。</p>
+</blockquote>
+<blockquote>
+<p>通过召开项目开工会议，沟通项目的开始时间、关键里程碑以及其他相关信息，以告知和鼓励干系人参与项目，并获得承诺。</p>
+</blockquote>
+<blockquote>
+<p>通过分析干系人的需求、利益和潜在影响，制定一份项目干系人管理计划，以便于有效管理干系人期望，并鼓励干系人参与项目决策。</p>
+</blockquote>
+</li>
+<li><p>执行过程组</p>
+<blockquote>
+<p>按照人力资源管理计划和采购管理计划，来获取和管理项目资源，以满足项目的要求。</p>
+</blockquote>
+<blockquote>
+<p>根据项目管理计划，通过领导和建设项目团队来管理任务执行，以实现项目的可交付成果。</p>
+</blockquote>
+<blockquote>
+<p>使用适当的工具和技术实施项目质量管理计划，以确保项目所有工作均满足要求的质量标准。</p>
+</blockquote>
+<blockquote>
+<p>遵循变更管理计划实施已批准的变更和纠正措施，以满足项目要求。</p>
+</blockquote>
+<blockquote>
+<p>依据风险管理计划，实施批准的行动，以最大限度地降低消极风险的影响，利用项目的机会。</p>
+</blockquote>
+<blockquote>
+<p>依据项目沟通管理计划管理项目的信息流动，并传递给相关干系人以保持干系人参与。</p>
+</blockquote>
+<blockquote>
+<p>根据干系人管理计划，管理干系人之间的关系，以获得干系人持续的支持和管理干系人期望。</p>
+</blockquote>
+</li>
+<li><p>监控过程组</p>
+<blockquote>
+<p>使用适当的工具和技术来衡量项目绩效，以识别和量化任何偏差，并确定适当的纠正措施。</p>
+</blockquote>
+<blockquote>
+<p>遵循变更管理计划管理项目的变更，以确保项目的目标与业务需求仍然保持一致。</p>
+</blockquote>
+<blockquote>
+<p>依据质量管理计划和已定义的质量标准，使用适当的工具和技术，来验证项目可交付成果，以满足项目要求和业务需求。</p>
+</blockquote>
+<blockquote>
+<p>监控和评估已识别风险，确定风险触发条件是否已经改变，评估风险应对措施有效性，用以管理项目风险和机会的影响。</p>
+</blockquote>
+<blockquote>
+<p>审查并在必要时更新问题日志，使用适当的工具和技术来确定纠正措施，以减轻对项目的影响。</p>
+</blockquote>
+<blockquote>
+<p>使用经验教训管理技术，收集、分析和管理项目经验教训以能够持续改进未来项目。</p>
+</blockquote>
+<blockquote>
+<p>根据采购管理计划监控采购活动，以验证是否符合项目目标。</p>
+</blockquote>
+</li>
+<li><p>收尾过程组</p>
+<blockquote>
+<p>获得相关干系人对项目的最终交付验收，以确认该项目的范围和可交付成果得以实现。</p>
+</blockquote>
+<blockquote>
+<p>按照项目管理计划向授权人转移可交付成果的所有权，以便于项目收尾。</p>
+</blockquote>
+<blockquote>
+<p>使用项目管理行业普遍接受的做法和政策，获得项目的财务、法律和行政收尾，以便沟通正式的项目收尾和确保责任的转移。</p>
+</blockquote>
+<blockquote>
+<p>根据项目沟通管理计划编制并分发最终项目报告，记录并传递项目绩效信息，并协助进行项目评估。</p>
+</blockquote>
+<blockquote>
+<p>收集贯穿整个项目的完整记录和经验教训文档，指导进行全面的项目综合评审，并更新组织过程资产。</p>
+</blockquote>
+<blockquote>
+<p>使用普遍接受的最佳实践做法，存档项目文件和原始记录，以证明符合法律要求和供未来项目和审计使用。</p>
+</blockquote>
+<blockquote>
+<p>根据干系人管理计划，使用合适的工具和技术，通过获取相关干系人的反馈来评估干系人满意度。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="十大知识领域"><a href="#十大知识领域" class="headerlink" title="十大知识领域"></a>十大知识领域</h3><ul>
+<li><p>整合管理</p>
+</li>
+<li><p>范围管理</p>
+</li>
+<li><p>时间管理</p>
+</li>
+<li><p>成本管理</p>
+</li>
+<li><p>质量管理</p>
+</li>
+<li><p>人力资源管理</p>
+</li>
+<li><p>沟通管理</p>
+</li>
+<li><p>风险管理</p>
+</li>
+<li><p>采购管理</p>
+</li>
+<li><p>干系人管理</p>
+</li>
+</ul>
+<h3 id="知识网格图"><a href="#知识网格图" class="headerlink" title="知识网格图"></a>知识网格图</h3><table>
+<thead>
+<tr>
+<th>十大知识领域</th>
+<th>启动过程组</th>
+<th>规划过程组</th>
+<th>执行过程组</th>
+<th>监控过程组</th>
+<th>收尾过程组</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整合管理</td>
+<td>4.1制定项目章程</td>
+<td>4.2制定项目管理计划</td>
+<td>4.3指导与管理项目工作4.4管理项目知识</td>
+<td>4.5监控项目工作  <br />4.6实施整体项目变更控制</td>
+<td>4.7结束项目或阶段</td>
+</tr>
+<tr>
+<td>范围管理</td>
+<td></td>
+<td>5.1规划范围管理<br/>5.2收集需求<br/>5.3定义范围<br/>5.4创建WBS</td>
+<td></td>
+<td>5.5确认范围<br />5.6控制范围</td>
+<td></td>
+</tr>
+<tr>
+<td>时间（进度）管理</td>
+<td></td>
+<td>6.1规划进度管理<br/>6.2定义活动<br/>6.3排列活动顺序<br />6.4估算活动持续时间<br />6.5制定进度计划</td>
+<td></td>
+<td>6.6控制进度</td>
+<td></td>
+</tr>
+<tr>
+<td>成本管理</td>
+<td></td>
+<td>7.1规划成本管理<br />7.2估算成本<br />7.3制定预算</td>
+<td></td>
+<td>7.4控制成本</td>
+<td></td>
+</tr>
+<tr>
+<td>质量管理</td>
+<td></td>
+<td>8.1规划质量管理</td>
+<td>8.2管理质量</td>
+<td>8.3控制质量</td>
+<td></td>
+</tr>
+<tr>
+<td>资源管理</td>
+<td></td>
+<td>9.1规划资源管理<br />9.2估算活动资源</td>
+<td>9.3获取资源<br />9.4建设团队<br />9.5管理团队</td>
+<td>9.6控制资源</td>
+<td></td>
+</tr>
+<tr>
+<td>沟通管理</td>
+<td></td>
+<td>10.1规划沟通管理</td>
+<td>10.2管理沟通</td>
+<td>10.3监督沟通</td>
+<td></td>
+</tr>
+<tr>
+<td>风险管理</td>
+<td></td>
+<td>11.1规划风险管理<br/>11.2识别风险<br />11.3实施定性风险分析<br/>11.4实施定量风险分析11.5规划风险应付</td>
+<td>11.6实施风险应付</td>
+<td>11.7监督风险</td>
+<td></td>
+</tr>
+<tr>
+<td>采购管理</td>
+<td></td>
+<td>12.1规划采购管理</td>
+<td>12.2实施采购</td>
+<td>12.3控制采购</td>
+<td></td>
+</tr>
+<tr>
+<td>干系人管理</td>
+<td>13.1识别干系人</td>
+<td>13.2规划相关方参与</td>
+<td>13.3管理相关方参与</td>
+<td>13.4监督相关方参与</td>
+<td></td>
+</tr>
+</tbody></table>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%85%B6%E4%BB%96/"># 其他</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/02/20/%E5%A4%A7%E6%95%B0%E6%8D%AEHadoop%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98/">Hadoop搭建问题</a>
+            
+            
+            <a class="next" rel="next" href="/2020/12/22/OraclePLSQL%E7%9F%A5%E8%AF%86/">Oracle PLSQL知识</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 杨佳男 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
