@@ -218,13 +218,73 @@
         </header>
 
         <div class="post-content">
-            <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h4><p>优化器（optimizer）是oracle数据库内置的一个核心子系统。优化器的目的是按照一定的判断原则来得到它认为的目标SQL在当前的情形下的最高效的执行路径，也就是为了得到目标SQL的最佳执行计划。依据所选择执行计划时所用的判断原则，oracle数据库里的优化器又分为RBO（基于原则的优化器）和CBO（基于成本的优化器，SQL的成本根据统计信息算出）两种。</p>
+            <h3 id="Oracle性能调优"><a href="#Oracle性能调优" class="headerlink" title="Oracle性能调优"></a>Oracle性能调优</h3><h4 id="设计和开发"><a href="#设计和开发" class="headerlink" title="设计和开发"></a>设计和开发</h4><blockquote>
+<p>最佳系统性能始于设计。在初始设计阶段仔细考虑性能问题，可以在生产过程中更轻松地调整系统。</p>
+<p>系统架构，应用设计，负载测试，建模实施。</p>
+</blockquote>
+<h4 id="实例调优"><a href="#实例调优" class="headerlink" title="实例调优"></a>实例调优</h4><blockquote>
+<p>配置系统涉及以有序的方式分配资源，以便初始系统配置发挥作用。调优方法是建立一个性能基线，出现性能问题，可以将其用于比较。</p>
+<p>为数据库结构分配内存，确定数据库不同部分的 I/O 要求，调整操作系统以获得数据库的最佳性能。    </p>
+<p>主动监控，消除瓶颈。</p>
+</blockquote>
+<h4 id="SQL调优"><a href="#SQL调优" class="headerlink" title="SQL调优"></a>SQL调优</h4><blockquote>
+<p>自动监视和诊断工具Oracle Enterprise Manager Database Control</p>
+<p>自动工作负载存储库 (AWR) </p>
+<p>自动数据库诊断监视器 (ADDM) </p>
+<p>SQL Tuning Advisor、SQLAccess Advisor</p>
+</blockquote>
+<h3 id="SQL优化"><a href="#SQL优化" class="headerlink" title="SQL优化"></a>SQL优化</h3><h4 id="查询优化器"><a href="#查询优化器" class="headerlink" title="查询优化器"></a>查询优化器</h4><p>查询优化器是oracle数据库内置的一个核心子系统。优化器的目的是按照一定的判断原则来得到它认为的目标SQL在当前的情形下的最高效的执行路径，也就是为了得到目标SQL的最佳执行计划。依据所选择执行计划时所用的判断原则，oracle数据库里的优化器又分为RBO（基于原则的优化器）和CBO（基于成本的优化器，SQL的成本根据统计信息算出）两种。</p>
 <blockquote>
 <p>RBO: Rule-Based Optimization 基于规则的优化器</p>
 </blockquote>
 <blockquote>
 <p>CBO: Cost-Based Optimization 基于代价的优化器</p>
 </blockquote>
+<h3 id="SQL语句执行步骤"><a href="#SQL语句执行步骤" class="headerlink" title="SQL语句执行步骤"></a>SQL语句执行步骤</h3><ul>
+<li><p>语法分析</p>
+</li>
+<li><p>语义分析</p>
+</li>
+<li><p>试图转换</p>
+</li>
+<li><p>表达式转换</p>
+</li>
+<li><p>选择优化器</p>
+<blockquote>
+<p>优化器根据可用的访问路径和提示为 SQL 语句生成一组潜在的计划。</p>
+<p>优化器根据数据字典中的统计信息估计每个计划的成本。统计信息包括语句访问的表、索引和分区的数据分布和存储特征信息。</p>
+<p>优化器比较计划并选择成本最低的计划。</p>
+</blockquote>
+</li>
+<li><p>选择连接方式</p>
+</li>
+<li><p>选择连接顺序</p>
+</li>
+<li><p>选择数据搜索顺序</p>
+</li>
+<li><p>运行</p>
+</li>
+</ul>
+<h4 id="执行计划的生成"><a href="#执行计划的生成" class="headerlink" title="执行计划的生成"></a>执行计划的生成</h4><ul>
+<li><p>查询转换</p>
+<blockquote>
+<p>语句的每个查询部分称为查询块。查询转换器的输入是一个已解析的查询，由一组查询块表示。</p>
+</blockquote>
+</li>
+<li><p>估计</p>
+<p>确定给定的执行计划的总成本。估算器生成三种不同类型的度量来实现此目标。</p>
+<blockquote>
+<p>选择性表示行集中的一小部分行(统计数据不可用\统计数据可用)。</p>
+<p>基数表示行集中的行数（行集可以是基表、视图或连接或GROUP BY运算符的结果）。</p>
+<p>成本表示使用的工作或资源的单位。优化器使用磁盘 I/O、CPU 使用率和内存使用率作为工作单元。</p>
+</blockquote>
+</li>
+<li><p>计划生成</p>
+<blockquote>
+<p>优化器通过单独的查询块表示每个嵌套的子查询或未合并的视图，并生成一个子计划。数据库自下而上分别优化查询块。因此，数据库首先优化最内层的查询块并为其生成子计划，然后最后生成代表整个查询的外层查询块。</p>
+</blockquote>
+</li>
+</ul>
 <h4 id="执行计划阅读"><a href="#执行计划阅读" class="headerlink" title="执行计划阅读"></a>执行计划阅读</h4><blockquote>
 <p>执行计划中缩进最大的最先执行，相同缩进最上最先执行。</p>
 <p>驱动表DRIVING TABLE，又称为 外层表OUTER TABLE，关联时首先读取的是驱动表，然后在根据条件去匹配表中匹配记录。</p>
@@ -251,6 +311,9 @@
 <li><p>不更改业务逻辑的情况下修改SQL写法，达到调整执行计划的目的，从而减少资源消耗。</p>
 </li>
 <li><p>重新设计表，索引，重新组织表的数据，分区等。</p>
+<blockquote>
+<p>分区表中，当查询的条件是需要跨分区查询内容的时候，LOCAL INDEX的效率比GLOBAL INDEX的效率要低。如果查询的条件是在单个分区里面查询的时候，那么LOCAL INDEX的效率比GLOBAL INDEX的效率要高</p>
+</blockquote>
 </li>
 <li><p>重新收集统计信息或可通过ANALYZE、DBMS_DDL、DBMS_UTILITY、DBMS_STATS等包批量分析，分析后结果可用于CBO。</p>
 </li>
@@ -267,26 +330,21 @@
 </blockquote>
 </li>
 </ul>
-<h3 id="SQL语句执行步骤"><a href="#SQL语句执行步骤" class="headerlink" title="SQL语句执行步骤"></a>SQL语句执行步骤</h3><ul>
-<li>语法分析</li>
-<li>语义分析</li>
-<li>试图转换</li>
-<li>表达式转换</li>
-<li>选择优化器</li>
-<li>选择连接方式</li>
-<li>选择连接顺序</li>
-<li>选择数据搜索顺序</li>
-<li>运行</li>
-</ul>
-<h3 id="访问方式"><a href="#访问方式" class="headerlink" title="访问方式"></a>访问方式</h3><h4 id="全表扫描"><a href="#全表扫描" class="headerlink" title="全表扫描"></a>全表扫描</h4><blockquote>
-<p>TABLE ACCESS FULL</p>
+<h3 id="访问方式"><a href="#访问方式" class="headerlink" title="访问方式"></a>访问方式</h3><p>访问路径是从数据库中检索数据的方式。</p>
+<h4 id="全表扫描"><a href="#全表扫描" class="headerlink" title="全表扫描"></a>全表扫描</h4><blockquote>
+<p>TABLE ACCESS FULL 这种类型的扫描从表中读取所有行并过滤掉那些不符合选择标准的行。</p>
+<p>如果查询不能使用现有索引，则它使用全表扫描。</p>
+<p>如果优化器认为查询需要表中的大部分块，那么它使用全表扫描，即使索引可用。</p>
+<p>如果一个表在高水位线下包含的块少于数据库可以在单个 I/O 调用中读取的块，使用全表扫描。</p>
+<p>表的高度并行性使优化器偏向于范围扫描上的全表扫描。</p>
+<p>使用提示HINT指示优化器使用全表扫描。</p>
 </blockquote>
-<h4 id="ROWID表存取"><a href="#ROWID表存取" class="headerlink" title="ROWID表存取"></a>ROWID表存取</h4><blockquote>
-<p>TABLE ACCESS BY ROWID</p>
+<h4 id="ROWID扫描"><a href="#ROWID扫描" class="headerlink" title="ROWID扫描"></a>ROWID扫描</h4><blockquote>
+<p>TABLE ACCESS BY ROWID 行的rowid 指定包含该行的数据文件和数据块以及该行在该块中的位置。通过指定行的 rowid 来定位一行是检索单行的最快方法，因为该行在数据库中的确切位置是指定的。</p>
 </blockquote>
-<h4 id="索引扫"><a href="#索引扫" class="headerlink" title="索引扫"></a>索引扫</h4><blockquote>
-<p>TABLE ACCESS BY INDEX SCAN</p>
-<p>分物中，唯一扫描、范围扫描、全扫描、快速扫描、跳跃扫描。</p>
+<h4 id="索引扫描"><a href="#索引扫描" class="headerlink" title="索引扫描"></a>索引扫描</h4><blockquote>
+<p>TABLE ACCESS BY INDEX SCAN 索引扫描根据索引中一个或多个列的值从索引中检索数据。</p>
+<p>分五中，唯一扫描（Index Unique Scans）、范围扫描（Index Range Scans）、全扫描（Full Scans）、快速扫描（Fast Full Index Scans）、跳跃扫描（Index Skip Scans）。</p>
 </blockquote>
 <h3 id="连接方式"><a href="#连接方式" class="headerlink" title="连接方式"></a>连接方式</h3><h4 id="排序合并连接"><a href="#排序合并连接" class="headerlink" title="排序合并连接"></a>排序合并连接</h4><blockquote>
 <p>SORT MERGE JOIN</p>
