@@ -240,7 +240,7 @@
 <blockquote>
 <p>CBO: Cost-Based Optimization 基于代价的优化器</p>
 </blockquote>
-<h3 id="SQL语句执行步骤"><a href="#SQL语句执行步骤" class="headerlink" title="SQL语句执行步骤"></a>SQL语句执行步骤</h3><ul>
+<h4 id="SQL语句执行步骤"><a href="#SQL语句执行步骤" class="headerlink" title="SQL语句执行步骤"></a>SQL语句执行步骤</h4><ul>
 <li><p>语法分析</p>
 </li>
 <li><p>语义分析</p>
@@ -288,50 +288,18 @@
 <h4 id="执行计划阅读"><a href="#执行计划阅读" class="headerlink" title="执行计划阅读"></a>执行计划阅读</h4><blockquote>
 <p>执行计划中缩进最大的最先执行，相同缩进最上最先执行。</p>
 <p>驱动表DRIVING TABLE，又称为 外层表OUTER TABLE，关联时首先读取的是驱动表，然后在根据条件去匹配表中匹配记录。</p>
+<p>过滤条件决定了驱动表和索引的选择。通常，驱动表是包含消除表中最高百分比的过滤条件的表。</p>
 <p>匹配表PROBED TABLE，又称为 内层表INNER TABLE，从驱动表获取一行具体数据后，再根据连接条件到内层表中查询，所以内层表一般为大表，这样不需要查询整个大表，只需根据条件查询。</p>
 </blockquote>
 <h4 id="SQL语句执行"><a href="#SQL语句执行" class="headerlink" title="SQL语句执行"></a>SQL语句执行</h4><blockquote>
 <p>ORACLE对执行过的SQL语句进行高速缓冲的机制，解析过且确定了执行路径的SQL语句存放在SGA的共享池中，每次执行前在SGA中查找是否有缓冲的SQL语句。</p>
 </blockquote>
-<h3 id="优化目标"><a href="#优化目标" class="headerlink" title="优化目标"></a>优化目标</h3><blockquote>
+<h4 id="优化目标"><a href="#优化目标" class="headerlink" title="优化目标"></a>优化目标</h4><blockquote>
+<p>减少工作量，平衡工作量，并行化工作负载。</p>
 <p>缩短目标SQL语句的执行时间。</p>
 </blockquote>
-<h3 id="优化步骤"><a href="#优化步骤" class="headerlink" title="优化步骤"></a>优化步骤</h3><ul>
-<li><p>一、找到执行时间最长，查询消耗资源最多的TOP SQL，或查看会话执行情况以及日志等。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">  FROM (SELECT ROWNUM,</span><br><span class="line">               SUBSTR(a.sql_text, 1, 200) sql_text,</span><br><span class="line">               TRUNC(a.disk_reads / DECODE(a.executions, 0, 1, a.executions)) reads_per_execution,</span><br><span class="line">               a.buffer_gets,</span><br><span class="line">               a.disk_reads,</span><br><span class="line">               a.executions,</span><br><span class="line">               a.sorts,</span><br><span class="line">               a.address</span><br><span class="line">          FROM v$sqlarea a</span><br><span class="line">         ORDER BY 3 DESC)</span><br><span class="line"> WHERE ROWNUM &lt; 10;</span><br></pre></td></tr></table></figure></li>
-<li><p>二、分析资源消耗（AWR），分析统计信息，分析执行计划（EXPLAIN）。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SET AUTOTRACE ON;</span><br><span class="line">explain plan for select * from ...</span><br><span class="line">select * from table(dbms_xplan.display);</span><br></pre></td></tr></table></figure>
-
-<p>或最为简单的方式，PL\SQL-&gt;New-&gt;Explain Plan Windows，在窗口中填写SQL，点击执行进行查看。</p>
-</li>
-<li><p>三、修正SQL并验证。</p>
-</li>
-</ul>
-<h3 id="具体方法"><a href="#具体方法" class="headerlink" title="具体方法"></a>具体方法</h3><ul>
-<li><p>不更改业务逻辑的情况下修改SQL写法，达到调整执行计划的目的，从而减少资源消耗。</p>
-</li>
-<li><p>重新设计表，索引，重新组织表的数据，分区等。</p>
-<blockquote>
-<p>分区表中，当查询的条件是需要跨分区查询内容的时候，LOCAL INDEX的效率比GLOBAL INDEX的效率要低。如果查询的条件是在单个分区里面查询的时候，那么LOCAL INDEX的效率比GLOBAL INDEX的效率要高</p>
-</blockquote>
-</li>
-<li><p>重新收集统计信息或可通过ANALYZE、DBMS_DDL、DBMS_UTILITY、DBMS_STATS等包批量分析，分析后结果可用于CBO。</p>
-</li>
-<li><p>全表扫描或排序时，建立合适的索引。</p>
-</li>
-<li><p>SQL执行计划不稳定的使用提示HINT、SQL PROFILE等。</p>
-<blockquote>
-<p>SQL PROFILE:SQL配置文件是存储在数据字典中的其他统计信息的集合，可帮助优化程序为查询生成最佳计划。</p>
-</blockquote>
-</li>
-<li><p>增加并行</p>
-<blockquote>
-<p>增加额外的硬件资源消耗，使执行时间缩短，针对CPU、内存、I/O通道，多个RAC下数据库节点的额外利用。</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="访问方式"><a href="#访问方式" class="headerlink" title="访问方式"></a>访问方式</h3><p>访问路径是从数据库中检索数据的方式。</p>
-<h4 id="全表扫描"><a href="#全表扫描" class="headerlink" title="全表扫描"></a>全表扫描</h4><blockquote>
+<h4 id="访问方式"><a href="#访问方式" class="headerlink" title="访问方式"></a>访问方式</h4><p>访问路径是从数据库中检索数据的方式。</p>
+<h5 id="全表扫描"><a href="#全表扫描" class="headerlink" title="全表扫描"></a>全表扫描</h5><blockquote>
 <p>TABLE ACCESS FULL 这种类型的扫描从表中读取所有行并过滤掉那些不符合选择标准的行。</p>
 <p>如果查询不能使用现有索引，则它使用全表扫描。</p>
 <p>如果优化器认为查询需要表中的大部分块，那么它使用全表扫描，即使索引可用。</p>
@@ -339,10 +307,10 @@
 <p>表的高度并行性使优化器偏向于范围扫描上的全表扫描。</p>
 <p>使用提示HINT指示优化器使用全表扫描。</p>
 </blockquote>
-<h4 id="ROWID扫描"><a href="#ROWID扫描" class="headerlink" title="ROWID扫描"></a>ROWID扫描</h4><blockquote>
+<h5 id="ROWID扫描"><a href="#ROWID扫描" class="headerlink" title="ROWID扫描"></a>ROWID扫描</h5><blockquote>
 <p>TABLE ACCESS BY ROWID 行的rowid 指定包含该行的数据文件和数据块以及该行在该块中的位置。通过指定行的 rowid 来定位一行是检索单行的最快方法，因为该行在数据库中的确切位置是指定的。</p>
 </blockquote>
-<h4 id="索引扫描"><a href="#索引扫描" class="headerlink" title="索引扫描"></a>索引扫描</h4><blockquote>
+<h5 id="索引扫描"><a href="#索引扫描" class="headerlink" title="索引扫描"></a>索引扫描</h5><blockquote>
 <p>TABLE ACCESS BY INDEX SCAN 索引扫描根据索引中一个或多个列的值从索引中检索数据。</p>
 </blockquote>
 <ul>
@@ -372,27 +340,62 @@
 </blockquote>
 </li>
 </ul>
-<h3 id="连接方式"><a href="#连接方式" class="headerlink" title="连接方式"></a>连接方式</h3><blockquote>
+<h4 id="连接方式"><a href="#连接方式" class="headerlink" title="连接方式"></a>连接方式</h4><blockquote>
 <p>为了执行连接两个以上表的语句，Oracle 数据库连接两个表，然后将生成的行源连接到下一个表。这个过程一直持续到所有表都连接到结果中。</p>
 </blockquote>
-<h4 id="排序合并连接"><a href="#排序合并连接" class="headerlink" title="排序合并连接"></a>排序合并连接</h4><blockquote>
+<h5 id="排序合并连接"><a href="#排序合并连接" class="headerlink" title="排序合并连接"></a>排序合并连接</h5><blockquote>
 <p>SORT MERGE JOIN 排序合并连接可以连接来自两个独立源的行。</p>
 <p>当连接两个表之间的条件是不平等的条件，如排序合并连接是有用的<code>&lt;</code>，<code>&lt;=</code>，<code>&gt;</code>，或<code>&gt;=</code>。对于大型数据集，排序合并联接的性能优于嵌套循环联接。</p>
 <p>表无驱动顺序，谁在前面都可以；</p>
 </blockquote>
-<h4 id="嵌套循环连接"><a href="#嵌套循环连接" class="headerlink" title="嵌套循环连接"></a>嵌套循环连接</h4><blockquote>
+<h5 id="嵌套循环连接"><a href="#嵌套循环连接" class="headerlink" title="嵌套循环连接"></a>嵌套循环连接</h5><blockquote>
 <p>NESTED LOOPS（SEMI\ANIT\OUTER）</p>
 <p>嵌套循环实现行源间的内连接，并获取内连接结果。上面的行源是驱动行源，也叫外行源；下面的行源为被驱动行源，内行源。只返回内行源中得以匹配的相关数据。最合适的场景是外行源小，内行源上有理想的可用索引。</p>
 </blockquote>
 <blockquote>
 <p>应尽可能使用限制条件（Where过滤条件）使驱动表（row source 1）返回的行数尽可能少，同时在匹配表（row source 2）的连接操作关联列上建立唯一索引（UNIQUE INDEX）或是选择性较好的非唯一索引，此时嵌套循环连接的执行效率会变得很高。若驱动表返回的行数较多，即使匹配表连接操作关联列上存在索引，连接效率也不会很高。</p>
 </blockquote>
-<h4 id="哈希连接"><a href="#哈希连接" class="headerlink" title="哈希连接"></a>哈希连接</h4><blockquote>
+<h5 id="哈希连接"><a href="#哈希连接" class="headerlink" title="哈希连接"></a>哈希连接</h5><blockquote>
 <p>HASH JOIN 数据库使用散列连接来连接大型数据集。优化器使用两个表或数据源中较小的一个在内存中的连接键上构建哈希表。然后它扫描更大的表，探测哈希表以找到连接的行。</p>
 </blockquote>
-<h4 id="笛卡尔积连接"><a href="#笛卡尔积连接" class="headerlink" title="笛卡尔积连接"></a>笛卡尔积连接</h4><blockquote>
+<h5 id="笛卡尔积连接"><a href="#笛卡尔积连接" class="headerlink" title="笛卡尔积连接"></a>笛卡尔积连接</h5><blockquote>
 <p>CARTESIAN PRODUCT 该数据库使用一个 当一个或多个表对语句中的任何其他表没有任何连接条件时，笛卡尔连接。</p>
 </blockquote>
+<h4 id="优化步骤"><a href="#优化步骤" class="headerlink" title="优化步骤"></a>优化步骤</h4><ul>
+<li><p>一、找到执行时间最长，查询消耗资源最多的TOP SQL，或查看会话执行情况以及日志等。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">  FROM (SELECT ROWNUM,</span><br><span class="line">               SUBSTR(a.sql_text, 1, 200) sql_text,</span><br><span class="line">               TRUNC(a.disk_reads / DECODE(a.executions, 0, 1, a.executions)) reads_per_execution,</span><br><span class="line">               a.buffer_gets,</span><br><span class="line">               a.disk_reads,</span><br><span class="line">               a.executions,</span><br><span class="line">               a.sorts,</span><br><span class="line">               a.address</span><br><span class="line">          FROM v$sqlarea a</span><br><span class="line">         ORDER BY 3 DESC)</span><br><span class="line"> WHERE ROWNUM &lt; 10;</span><br></pre></td></tr></table></figure></li>
+<li><p>二、分析资源消耗（AWR），分析统计信息，分析执行计划（EXPLAIN）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SET AUTOTRACE ON;</span><br><span class="line">explain plan for select * from ...</span><br><span class="line">select * from table(dbms_xplan.display);</span><br></pre></td></tr></table></figure>
+
+<p>或最为简单的方式，PL\SQL-&gt;New-&gt;Explain Plan Windows，在窗口中填写SQL，点击执行进行查看。</p>
+</li>
+<li><p>三、修正SQL并验证。</p>
+</li>
+</ul>
+<h3 id="优化方法"><a href="#优化方法" class="headerlink" title="优化方法"></a>优化方法</h3><ul>
+<li><p>不更改业务逻辑的情况下修改SQL写法，达到调整执行计划的目的，从而减少资源消耗。</p>
+</li>
+<li><p>重新设计表，索引，重新组织表的数据，分区等。</p>
+<blockquote>
+<p>避免GROUP BY在响应关键代码中使用。</p>
+<p>分区表中，当查询的条件是需要跨分区查询内容的时候，LOCAL INDEX的效率比GLOBAL INDEX的效率要低。如果查询的条件是在单个分区里面查询的时候，那么LOCAL INDEX的效率比GLOBAL INDEX的效率要高</p>
+</blockquote>
+</li>
+<li><p>重新收集统计信息或可通过ANALYZE、DBMS_DDL、DBMS_UTILITY、DBMS_STATS等包批量分析，分析后结果可用于CBO。</p>
+</li>
+<li><p>全表扫描或排序时，建立合适的索引。</p>
+</li>
+<li><p>SQL执行计划不稳定的使用提示HINT、SQL PROFILE等。</p>
+<blockquote>
+<p>SQL PROFILE:SQL配置文件是存储在数据字典中的其他统计信息的集合，可帮助优化程序为查询生成最佳计划。</p>
+</blockquote>
+</li>
+<li><p>增加并行</p>
+<blockquote>
+<p>增加额外的硬件资源消耗，使执行时间缩短，针对CPU、内存、I/O通道，多个RAC下数据库节点的额外利用。</p>
+</blockquote>
+</li>
+</ul>
 <h3 id="优化经验"><a href="#优化经验" class="headerlink" title="优化经验"></a>优化经验</h3><ul>
 <li><p>降低逻辑读，IN改写为关联，大部分SQL优化问题都可以通过增加或减少索引的方式解决。</p>
 <blockquote>
@@ -426,6 +429,28 @@
 </li>
 <li><p>WITH子句的返回结果存到用户的临时表空间中，只做一次查询，提高效率，可重用结果。</p>
 </li>
+<li><p>避免在 WHERE 子句中转换列，对未转换的列值执行等值联接的语句最容易调整。</p>
+</li>
+<li><p>任何使用列的表达式，都会导致优化器忽略在该列上使用索引，甚至是唯一索引，除非定义了一个基于函数的索引，数据库才可以用。</p>
+</li>
+<li><p>如果查询连接两个表，并且连接列具有不同的数据类型（例如，NUMBER和VARCHAR2），则 Oracle 数据库隐式执行数据类型转换。例如，如果连接条件为varcol=numcol，则数据库将条件隐式转换为TO_NUMBER(varcol)=numcol。如果varcol列上存在索引，则将类型转换显式设置为varcol=TO_CHAR(numcol)，从而使数据库能够使用该索引。</p>
+</li>
+<li><p>复杂表达式会阻止优化器分配有效的基数或选择性估计，进而会影响整体计划和连接方法。</p>
+<blockquote>
+<p>col1= NVL (:b1,col1)</p>
+<p>NVL( col1,-999) = ….</p>
+<p>TO_DATE()、TO_NUMBER() 等</p>
+</blockquote>
+</li>
+<li><p>BETWEEN不能在列上使用索引。</p>
+</li>
+<li><p>如果可以使用另一个提取 100 行的索引，就避免使用从驱动表中提取 10,000 行的索引。</p>
+</li>
+<li><p>每个语句明确过滤条件与连接条件，更具限制性的过滤条件使得连接变得更容易。</p>
+</li>
+<li><p>使用 CASE 表达式组合多个扫描。</p>
+</li>
+<li></li>
 </ul>
 
         </div>
