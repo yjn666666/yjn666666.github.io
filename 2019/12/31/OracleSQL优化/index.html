@@ -344,10 +344,40 @@
 </blockquote>
 <h4 id="索引扫描"><a href="#索引扫描" class="headerlink" title="索引扫描"></a>索引扫描</h4><blockquote>
 <p>TABLE ACCESS BY INDEX SCAN 索引扫描根据索引中一个或多个列的值从索引中检索数据。</p>
-<p>分五中，唯一扫描（Index Unique Scans）、范围扫描（Index Range Scans）、全扫描（Full Scans）、快速扫描（Fast Full Index Scans）、跳跃扫描（Index Skip Scans）。</p>
 </blockquote>
-<h3 id="连接方式"><a href="#连接方式" class="headerlink" title="连接方式"></a>连接方式</h3><h4 id="排序合并连接"><a href="#排序合并连接" class="headerlink" title="排序合并连接"></a>排序合并连接</h4><blockquote>
-<p>SORT MERGE JOIN</p>
+<ul>
+<li><p>唯一扫描（Index Unique Scans）</p>
+<blockquote>
+<p>此扫描最多返回一个 rowid。如果语句包含保证仅访问单行UNIQUE的PRIMARY<code> </code>KEY约束或约束，则 Oracle 数据库执行唯一扫描。</p>
+</blockquote>
+</li>
+<li><p>范围扫描（Index Range Scans）</p>
+<blockquote>
+<p>索引范围扫描是访问选择性数据的常见操作。它可以是有界（两侧有界）或无界（一侧或两侧）。数据按索引列的升序返回。具有相同值的多行按 rowid 升序排列。</p>
+</blockquote>
+</li>
+<li><p>全扫描（Full Scans）</p>
+<blockquote>
+<p>全索引扫描消除了排序操作，因为数据是按索引键排序的。</p>
+</blockquote>
+</li>
+<li><p>快速全索引扫描（Fast Full Index Scans）</p>
+<blockquote>
+<p>当索引包含查询所需的所有列，并且索引键中至少有一个列具有NOT NULL约束时，快速全索引扫描是全表扫描的替代方法。快速全扫描访问索引本身中的数据，而不访问表。</p>
+</blockquote>
+</li>
+<li><p>跳跃扫描（Index Skip Scans）</p>
+<blockquote>
+<p>当查询谓词中未指定复合索引的前导列时，数据库可能会选择索引跳过扫描。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="连接方式"><a href="#连接方式" class="headerlink" title="连接方式"></a>连接方式</h3><blockquote>
+<p>为了执行连接两个以上表的语句，Oracle 数据库连接两个表，然后将生成的行源连接到下一个表。这个过程一直持续到所有表都连接到结果中。</p>
+</blockquote>
+<h4 id="排序合并连接"><a href="#排序合并连接" class="headerlink" title="排序合并连接"></a>排序合并连接</h4><blockquote>
+<p>SORT MERGE JOIN 排序合并连接可以连接来自两个独立源的行。</p>
+<p>当连接两个表之间的条件是不平等的条件，如排序合并连接是有用的<code>&lt;</code>，<code>&lt;=</code>，<code>&gt;</code>，或<code>&gt;=</code>。对于大型数据集，排序合并联接的性能优于嵌套循环联接。</p>
 <p>表无驱动顺序，谁在前面都可以；</p>
 </blockquote>
 <h4 id="嵌套循环连接"><a href="#嵌套循环连接" class="headerlink" title="嵌套循环连接"></a>嵌套循环连接</h4><blockquote>
@@ -358,10 +388,10 @@
 <p>应尽可能使用限制条件（Where过滤条件）使驱动表（row source 1）返回的行数尽可能少，同时在匹配表（row source 2）的连接操作关联列上建立唯一索引（UNIQUE INDEX）或是选择性较好的非唯一索引，此时嵌套循环连接的执行效率会变得很高。若驱动表返回的行数较多，即使匹配表连接操作关联列上存在索引，连接效率也不会很高。</p>
 </blockquote>
 <h4 id="哈希连接"><a href="#哈希连接" class="headerlink" title="哈希连接"></a>哈希连接</h4><blockquote>
-<p>HASH JOIN</p>
+<p>HASH JOIN 数据库使用散列连接来连接大型数据集。优化器使用两个表或数据源中较小的一个在内存中的连接键上构建哈希表。然后它扫描更大的表，探测哈希表以找到连接的行。</p>
 </blockquote>
 <h4 id="笛卡尔积连接"><a href="#笛卡尔积连接" class="headerlink" title="笛卡尔积连接"></a>笛卡尔积连接</h4><blockquote>
-<p>CARTESIAN PRODUCT</p>
+<p>CARTESIAN PRODUCT 该数据库使用一个 当一个或多个表对语句中的任何其他表没有任何连接条件时，笛卡尔连接。</p>
 </blockquote>
 <h3 id="优化经验"><a href="#优化经验" class="headerlink" title="优化经验"></a>优化经验</h3><ul>
 <li><p>降低逻辑读，IN改写为关联，大部分SQL优化问题都可以通过增加或减少索引的方式解决。</p>
@@ -396,7 +426,6 @@
 </li>
 <li><p>WITH子句的返回结果存到用户的临时表空间中，只做一次查询，提高效率，可重用结果。</p>
 </li>
-<li></li>
 </ul>
 
         </div>
