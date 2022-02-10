@@ -219,8 +219,16 @@
 
         <div class="post-content">
             <h3 id="Oracle性能调优"><a href="#Oracle性能调优" class="headerlink" title="Oracle性能调优"></a>Oracle性能调优</h3><h4 id="设计和开发"><a href="#设计和开发" class="headerlink" title="设计和开发"></a>设计和开发</h4><blockquote>
-<p>最佳系统性能始于设计。在初始设计阶段仔细考虑性能问题，可以在生产过程中更轻松地调整系统。</p>
+<p>最佳系统性能始于设计。在初始设计阶段仔细考虑性能问题，可以在生产过程中更轻松地调整系统，保证数据的完整性和性能。</p>
 <p>系统架构，应用设计，负载测试，建模实施。</p>
+<p>普遍使用实体，属性，值以及基于XML的设计。</p>
+<p>概念设计（ER图）、逻辑设计（数据流图）、物理设计</p>
+<p>使用约束加强数据完整性，主键、唯一键、外键、非空约束，检查约束。</p>
+<p>选择正确的数据类型。</p>
+<p>正确使用绑定变量，缓存中共享游标，避免硬解析和相关开销，但有时会导致查询优化器无法获取关键的信息。</p>
+<p>利用数据库高级特性，但过于依赖某产品。</p>
+<p>使用连接池避免不断启动和停止的专有服务进程。 </p>
+<p>设置性能目标，或调优目标。</p>
 </blockquote>
 <h4 id="实例调优"><a href="#实例调优" class="headerlink" title="实例调优"></a>实例调优</h4><blockquote>
 <p>配置系统涉及以有序的方式分配资源，以便初始系统配置发挥作用。调优方法是建立一个性能基线，出现性能问题，可以将其用于比较。</p>
@@ -370,6 +378,7 @@
 <p>或最为简单的方式，PL\SQL-&gt;New-&gt;Explain Plan Windows，在窗口中填写SQL，点击执行进行查看。</p>
 </li>
 <li><p>三、修正SQL并验证。</p>
+<p><em>优化三问：时间耗费在哪里？如何耗费的？如何减少耗费？</em></p>
 </li>
 </ul>
 <h3 id="优化方法"><a href="#优化方法" class="headerlink" title="优化方法"></a>优化方法</h3><ul>
@@ -387,6 +396,7 @@
 </li>
 <li><p>SQL执行计划不稳定的使用提示HINT、SQL PROFILE等。</p>
 <blockquote>
+<p>常用并行，以及nologging</p>
 <p>SQL PROFILE:SQL配置文件是存储在数据字典中的其他统计信息的集合，可帮助优化程序为查询生成最佳计划。</p>
 </blockquote>
 </li>
@@ -420,6 +430,9 @@
 <li><p>DISTINCT、UNION 、MINOS、INTERSECT、ORDER BY会启动SQL引擎执行耗费资源的排序（SORT）功能。</p>
 </li>
 <li><p>可考虑使用并行查询，并行DDL、并行DML、并行加载数据、并行备份与恢复、并行收集统计信息。</p>
+<blockquote>
+<p>alter session force parallel ddl parallel 8;</p>
+</blockquote>
 </li>
 <li><p>MEGER USING中的对比数据使用临时表，减少对比数据量，拆分MATCHED与NOT MATCHED。</p>
 </li>
