@@ -221,6 +221,87 @@
             <h3 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h3><h4 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h4><h4 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h4><h4 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h4><h4 id="SSHD"><a href="#SSHD" class="headerlink" title="SSHD"></a>SSHD</h4><h4 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h4><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><ul>
 <li>命令集</li>
 </ul>
+<h3 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h3><p>虚拟机密码要记好 123456</p>
+<p>Ifconfig 查询当前虚拟机地址</p>
+<p>xnj1 192.168.196.128</p>
+<p>xnj2 192.168.196.131</p>
+<p>xnj3 192.168.196.130</p>
+<p>上传jkd 文件jdk-7u80-linux-x64.tar.gz</p>
+<p>切换su用户后编辑文件</p>
+<p>vi /etc/sudoers</p>
+<p>增加yangjn权限：wq!</p>
+<p>切换yangjn用户后</p>
+<p>修改主机名 sudo hostnamectl –static set-hostname xnj1</p>
+<p>修改hosts</p>
+<p>修改系统时间 timedatectl set-timezone Asia/Shanghai</p>
+<p>根目录创建 sudo mkdir /modules/</p>
+<p>赋权 sudo chown yangjn:yangjn /modules/</p>
+<p>解压缩jdk tar -zxvf jdk-7u80-linux-x64.tar.gz -C /modules/</p>
+<p>进入jdk路径编辑权限文件 sudo vi /etc/profile</p>
+<p>添加如下信息</p>
+<p>export JAVA_HOME=/modules/jdk1.7.0_80</p>
+<p>export PATH=$PATH:$JAVA_HOME/bin</p>
+<p>source /etc/profile</p>
+<p>java -version</p>
+<p>设置SSH免密登录</p>
+<p>执行sudo vi /etc/hosts 命令</p>
+<p>192.168.196.128 xnj1</p>
+<p>192.168.196.131 xnj2</p>
+<p>192.168.196.130 xnj3</p>
+<p>用户目录下 cd ~</p>
+<p>ssh-keygen</p>
+<p>将密钥复制到其他虚拟机</p>
+<p>ssh-copy-id xnj1</p>
+<p><strong>hadoop****安装</strong></p>
+<p>解压缩hadoop至/modules</p>
+<p>tar -zxvf software/hadoop-2.6.0-cdh5.11.tar.gz -C /modules</p>
+<p>修改hadoop配置文件</p>
+<p>modules/hadoop5.11/etc/hadoop/hadoop-env.sh</p>
+<p>export JAVA_HOME=/modules/jdk1.7.0_80</p>
+<p>创建目录</p>
+<p>mkdir -p date/tmp</p>
+<p>复制hadoop至其他服务器,modules路径下</p>
+<p>scp -r hadoop-2.6.0-cdh5.11.1/ yangjn@xnj2:/modules/</p>
+<p>hadoop格式化，hadoop路径下</p>
+<p>bin/hdfs namenode -format （-help是帮助信息）</p>
+<p>启动hadoop服务命令：</p>
+<p>sbin/start-dfs.sh</p>
+<p>启动示例</p>
+<p>[yangjn@xnj1 sbin]$ cd ..</p>
+<p>[yangjn@xnj1 hadoop-2.6.0-cdh5.11.1]$ sbin/start-dfs.sh</p>
+<p>Starting namenodes on [xnj1]</p>
+<p>xnj1: starting namenode, logging to /modules/hadoop-2.6.0-cdh5.11.1/logs/hadoop-yangjn-namenode-xnj1.out</p>
+<p>xnj2: starting datanode, logging to /modules/hadoop-2.6.0-cdh5.11.1/logs/hadoop-yangjn-datanode-xnj2.out</p>
+<p>xnj3: starting datanode, logging to /modules/hadoop-2.6.0-cdh5.11.1/logs/hadoop-yangjn-datanode-xnj3.out</p>
+<p>xnj1: starting datanode, logging to /modules/hadoop-2.6.0-cdh5.11.1/logs/hadoop-yangjn-datanode-xnj1.out</p>
+<p>Starting secondary namenodes [xnj3]</p>
+<p>xnj3: starting secondarynamenode, logging to /modules/hadoop-2.6.0-cdh5.11.1/logs/hadoop-yangjn-secondarynamenode-xnj3.out</p>
+<p>[yangjn@xnj1 hadoop-2.6.0-cdh5.11.1]$</p>
+<p>停止服务</p>
+<p>sbin/stop-dfs.sh</p>
+<p>查询java进程</p>
+<p>jps</p>
+<p>关闭防火墙，web访问HDFS</p>
+<p>sudo systemctl stop firewalld.service</p>
+<p>防止防火墙开机启动</p>
+<p>sudo systemctl disable firewalld.service</p>
+<p>网页浏览</p>
+<p>192.168.196.128:50070</p>
+<p>hadoop路径下创建文件路径</p>
+<p>bin/hdfs dfs -mkdir -p user/yangjn （不是在根目录下）</p>
+<p>上传文件</p>
+<p>bin/hdfs dfs -put LICENSE.txt</p>
+<p>修改配置文件 mapred-site.xml.template 重命名 mapred-site.xml</p>
+<p>分发配置至其他服务器</p>
+<p>scp -r hadoop-2.6.0-cdh5.11.1/etc/hadoop/mapred-site.xml yangjn@xnj2:/modules/hadoop-2.6.0-cdh5.11.1/etc/hadoop/</p>
+<p>启动yarn</p>
+<p>sbin/start-yarn.sh</p>
+<p>sbin/stop-yarn.sh</p>
+<p>将hadoop下所有配置复制到resource下</p>
+<p>windows配置host文件，C:\Windows\System32\drivers\etc\hosts</p>
+<p>192.168.196.128 xnj1</p>
+<p>192.168.196.131 xnj2</p>
+<p>192.168.196.130 xnj3</p>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><h4 id="jps无法查看java进程"><a href="#jps无法查看java进程" class="headerlink" title="jps无法查看java进程"></a>jps无法查看java进程</h4><p>虚拟机上搭建的Hadoop环境，在查看java进程时出现错误：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　[xxx@xnj1 hadoop-2.6.0-cdh5.11.1]$ jps</span><br><span class="line"></span><br><span class="line">　　bash: jps: command not found...</span><br></pre></td></tr></table></figure>
 
